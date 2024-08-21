@@ -1,6 +1,5 @@
 
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +25,26 @@ class ListViewPageWidget extends StatefulWidget {
 
 class _ListViewPageWidgetState extends State<ListViewPageWidget> {
   final _words = <String>["end"];
+  final ScrollController _scrollController = ScrollController();
+  bool showBnt = false;
+  String _progress = "0%";
+
+  @override
+  void initState() {
+    _scrollController.addListener(() {
+      if(_scrollController.offset > 1000 && !showBnt) {
+        setState(() {
+          showBnt = true;
+        });
+      }
+      if(_scrollController.offset < 1000 && showBnt) {
+        setState(() {
+          showBnt = false;
+        });
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +99,76 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
                   return const Divider(color: Colors.red);
                 },
                 itemCount: _words.length),
-          ]))
+          ])),
+      SizedBox(
+          height: 250,
+          child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            double height = constraints.maxHeight;
+            double width = constraints.maxWidth;
+            return Stack(children: [
+              ListView.separated(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Center(
+                        child: Text(
+                      "controller-$index",
+                      style: const TextStyle(color: Colors.red, fontSize: 15, decoration: TextDecoration.none),
+                    ));
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider(height: 2,color: Colors.blue);
+                  },
+                  padding: const EdgeInsets.all(0),
+                  controller: _scrollController,
+                  itemCount: 200),
+              if(showBnt) Positioned(bottom: height/2,right: 0,child: GestureDetector(onTap: (){ _scrollController.animateTo(0, duration: const Duration(milliseconds: 1000), curve: Curves.ease); },child: Container(color: Colors.red,height: 20,width: 20)))
+            ]);
+          })),
+      Expanded(
+        child: Scrollbar(
+          thumbVisibility: true,
+          child: NotificationListener<ScrollNotification>(
+            child: Container(
+              color: Colors.white,
+              width: double.infinity,
+              height: double.infinity,
+              alignment: Alignment.center,
+              child: Stack(children: [
+                ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Text("$index",
+                        style: const TextStyle(
+                            color: Colors.black,
+                            decoration: TextDecoration.none,
+                            fontSize: 15));
+                  },
+                  itemCount: 100,
+                  itemExtent: 50,
+                ),
+                Center(
+                    child: CircleAvatar(
+                  //显示进度百分比
+                  radius: 30.0,
+                  backgroundColor: Colors.black54,
+                  child: Text(_progress,
+                      style: const TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.none,
+                          fontSize: 20)),
+                )),
+              ]),
+            ),
+            onNotification: (ScrollNotification notification) {
+              double progress = notification.metrics.pixels /
+                  notification.metrics.maxScrollExtent;
+              setState(() {
+                _progress = "${(progress * 100).toInt()}%";
+              });
+              return false;
+            },
+          ),
+        ),
+      ),
     ]);
   }
 
