@@ -17,6 +17,33 @@ class GridViewPageWidget extends StatefulWidget {
 }
 
 class _GridViewPageWidgetState extends State<GridViewPageWidget> {
+  List<String> iconList = [];
+
+  @override
+  void initState() {
+    _loadIcons();
+    super.initState();
+  }
+
+  void _loadIcons() {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+        iconList.addAll(
+          [
+            "images/image_car_1.png",
+            "images/image_car_2.png",
+            "images/image_car_3.png",
+            "images/image_car_4.png",
+            "images/image_car_5.png",
+            "images/image_car_6.png",
+            "images/image_car_7.png",
+            "images/image_car_8.png",
+            "images/image_car_9.png",
+          ]
+        );
+        setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,22 +57,119 @@ class _GridViewPageWidgetState extends State<GridViewPageWidget> {
                 crossAxisCount: 3,
                 childAspectRatio: 2.0,
                 crossAxisSpacing: 5,
-                mainAxisSpacing: 5
-                ),
+                mainAxisSpacing: 5),
             children: <Widget>[
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_1.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_2.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_3.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_4.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_5.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_6.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_7.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_8.png",height: 30,width: 30,),),),
-              Container(color: Colors.black,child: Center(child: Image.asset("images/image_car_9.png",height: 30,width: 30,),),),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_1.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_2.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_3.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_4.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_5.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_6.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_7.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_8.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.black,
+                child: Center(
+                  child: Image.asset(
+                    "images/image_car_9.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              ),
             ],
           ),
-        )
+        ),
+        Container(
+          height: 200,
+          padding: const EdgeInsets.all(5),
+          color: Colors.white,
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 2,crossAxisSpacing: 5,mainAxisSpacing: 5),
+            itemBuilder: (BuildContext context, int index) {
+              if(index == iconList.length -1 && index < 200) {
+                _loadIcons();
+              }
+              return Container(color: Colors.blue,child: Center(child: Image.asset(iconList[index],height: 30,width: 30,),),);
+            },
+            itemCount: iconList.length,
+          ),
+        ),
       ],
     );
   }
+
+
 }
