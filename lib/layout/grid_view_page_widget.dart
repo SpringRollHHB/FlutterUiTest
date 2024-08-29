@@ -157,6 +157,7 @@ class _GridViewPageWidgetState extends State<GridViewPageWidget> {
           padding: const EdgeInsets.all(5),
           color: Colors.white,
           child: GridView.builder(
+            padding: const EdgeInsets.all(0),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 2,crossAxisSpacing: 5,mainAxisSpacing: 5),
             itemBuilder: (BuildContext context, int index) {
               if(index == iconList.length -1 && index < 200) {

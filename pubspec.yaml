@@ -69,6 +69,12 @@ flutter:
     - images/image_car_7.png
     - images/image_car_8.png
     - images/image_car_9.png
+    - images/guanyu.webp
+    - images/zhangfei.webp
+    - images/zhaoyun.webp
+    - images/lvbu.webp
+    - images/caocao.webp
+    - images/liubei.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

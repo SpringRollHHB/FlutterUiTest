@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutteruitest/layout/page_view_widget.dart';
 import 'package:flutteruitest/layout/single_children_scrollview_page_widget.dart';
+import 'package:flutteruitest/layout/tab_bar_view_widget.dart';
 import 'package:flutteruitest/layout/template/list_page_widget.dart';
 
 import 'grid_view_page_widget.dart';
@@ -19,6 +20,7 @@ class ScrollablePageWidget extends ListPageWidget {
     list.add(HomeItem(title: "ListView", onTap: () {  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ListViewPageWidget()));  }));
     list.add(HomeItem(title: "GridView", onTap: () {  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const GridViewPageWidget()));  }));
     list.add(HomeItem(title: "PageView", onTap: () {  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const PageViewWidget()));  }));
+    list.add(HomeItem(title: "TabBarView", onTap: () {  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const TabBarViewWidget()));  }));
   }
 
 
