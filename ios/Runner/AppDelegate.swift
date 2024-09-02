@@ -14,7 +14,7 @@ import Flutter
       //监听来之flutter的调用
       videoPlayerChannel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
         if call.method == "videoPlayerNet" {
-                self.navigateToNativePage()
+                self.videoPlayerNet()
                 result("Success")
               } else {
                 result(FlutterMethodNotImplemented)
@@ -32,7 +32,18 @@ import Flutter
       viewController.title = "iOS Native Page"
 
       // 获取当前的 FlutterViewController 并进行跳转
-      let navigationController = window?.rootViewController as? UINavigationController
-      navigationController?.pushViewController(viewController, animated: true)
+      if let flutterViewController = window?.rootViewController as? FlutterViewController {
+          // 为 FlutterViewController 包装一个 UINavigationController（如果没有）
+          if let navigationController = flutterViewController.navigationController {
+              // 如果已有导航控制器，则使用它来推送新页面
+              navigationController.pushViewController(viewController, animated: true)
+          } else {
+              // 如果没有导航控制器，创建一个新的 UINavigationController 并将其设置为根视图控制器
+              let navController = UINavigationController(rootViewController: flutterViewController)
+              window?.rootViewController = navController
+              navController.pushViewController(viewController, animated: true)
+          }
+       }
+
     }
 }
