@@ -10,6 +10,7 @@ class ApusVideoPlayerH extends StatefulWidget {
 }
 
 class _ApusVideoPlayerHState extends State<ApusVideoPlayerH> with SingleTickerProviderStateMixin {
+  bool isVerticalPing = false;
 
   late VideoPlayerController _videoPlayerController;
 
@@ -58,54 +59,109 @@ class _ApusVideoPlayerHState extends State<ApusVideoPlayerH> with SingleTickerPr
               left: 0,
               right: 0,
               child: Column(
+                mainAxisAlignment: isVerticalPing ? MainAxisAlignment.start : MainAxisAlignment.center,
                 children: [
-                  const Spacer(),
-                  Container(
-                    color: Colors.red,
-                    width: double.infinity,
-                    child: _videoPlayerController.value.isInitialized
-                        ? AspectRatio(
-                            aspectRatio:
-                                _videoPlayerController.value.aspectRatio,
-                            child: Stack(alignment: Alignment.center,children: [
-                              VideoPlayer(_videoPlayerController),
-                              ValueListenableBuilder(
-                                  valueListenable: _isPlaying,
-                                  builder: (
-                                    BuildContext context,
-                                    bool value,
-                                    Widget? child,
-                                  ) {
-                                    return Visibility(
-                                      visible: !value,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          _videoPlayerController.play();
-                                        },
-                                        child: Container(
-                                          height: 48,
-                                          width: 48,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFF111E08)
-                                                .withOpacity(0.7),
-                                            borderRadius:
-                                                BorderRadius.circular(24),
+                  if(isVerticalPing) SizedBox(height: MediaQuery.of(context).padding.top),
+                  _videoPlayerController.value.isInitialized
+                      ? isVerticalPing
+                          ? Container(
+                              color: Colors.black,
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * (671 / 812),
+                              child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    VideoPlayer(_videoPlayerController),
+                                    ValueListenableBuilder(
+                                      valueListenable: _isPlaying,
+                                      builder: (
+                                          BuildContext context,
+                                          bool value,
+                                          Widget? child,
+                                          ) {
+                                        return Visibility(
+                                          visible: !value,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              _videoPlayerController
+                                                  .play();
+                                            },
+                                            child: Container(
+                                              height: 48,
+                                              width: 48,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: const Color(
+                                                    0xFF111E08)
+                                                    .withOpacity(0.7),
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    24),
+                                              ),
+                                              child: Image.asset(
+                                                "images/video_start_playing.webp",
+                                                height: 24,
+                                                width: 24,
+                                              ),
+                                            ),
                                           ),
-                                          child: Image.asset(
-                                            "images/video_start_playing.webp",
-                                            height: 24,
-                                            width: 24,
+                                        );
+                                      },
+                                    ),
+                                  ]),
+                            )
+                          : Container(
+                              color: Colors.black,
+                              width: double.infinity,
+                              child: AspectRatio(
+                                aspectRatio: _videoPlayerController.value.aspectRatio,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    VideoPlayer(_videoPlayerController),
+                                    ValueListenableBuilder(
+                                      valueListenable: _isPlaying,
+                                      builder: (
+                                          BuildContext context,
+                                          bool value,
+                                          Widget? child,
+                                          ) {
+                                        return Visibility(
+                                          visible: !value,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              _videoPlayerController
+                                                  .play();
+                                            },
+                                            child: Container(
+                                              height: 48,
+                                              width: 48,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: const Color(
+                                                    0xFF111E08)
+                                                    .withOpacity(0.7),
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    24),
+                                              ),
+                                              child: Image.asset(
+                                                "images/video_start_playing.webp",
+                                                height: 24,
+                                                width: 24,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              ],),
-                          )
-                        : Container(),
-                  ),
+                              ),
+                            )
+                      : Container(
+                          color: Colors.black,
+                        ),
                   if (_videoPlayerController.value.isInitialized)
                     ValueListenableBuilder(
                       valueListenable: _XX,
@@ -116,7 +172,6 @@ class _ApusVideoPlayerHState extends State<ApusVideoPlayerH> with SingleTickerPr
                         );
                       },
                     ),
-                  const Spacer(),
                 ],
               ),
             ),
