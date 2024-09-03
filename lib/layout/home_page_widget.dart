@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/apus_page_widget.dart';
 import 'package:flutteruitest/layout/scrollable_page_widget.dart';
+import 'package:flutteruitest/player.dart';
 
 class HomePageWidget extends StatefulWidget {
 
@@ -22,6 +23,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.initState();
     list.add(HomeItem(title: "APUS", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ApusPageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
     list.add(HomeItem(title: "可滚动widget", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ScrollablePageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
+    list.add(HomeItem(title: "视频1", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Player(url: "https://www.w3schools.com/html/movie.mp4",))); }));
+    list.add(HomeItem(title: "视频2", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Player(url: "https://file.picku.cloud/40b977df/banner/ff01a42e9e59c244e824e4754a7f7d10.mp4",))); }));
   }
 
   @override
