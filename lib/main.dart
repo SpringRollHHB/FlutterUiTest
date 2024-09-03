@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
+import 'package:flutteruitest/player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,6 +48,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            TextButton(onPressed: (){
+              // 跳转到player
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const Player(url:'https://www.w3schools.com/html/movie.mp4')));
+            }, child: const Text('视频播放1')),
+            TextButton(onPressed: (){
+              // 跳转到player
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const Player(url:'https://file.picku.cloud/40b977df/banner/ff01a42e9e59c244e824e4754a7f7d10.mp4')));
+            }, child: const Text('视频播放2')),
             const Text(
               'You have pushed the button this many times:',
             ),
