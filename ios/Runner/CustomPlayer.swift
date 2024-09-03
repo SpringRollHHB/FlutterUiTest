@@ -11,6 +11,8 @@ import AVKit
 class CustomPlayer: UIView {
     var playerChannel : FlutterMethodChannel?
     var playerButton : UIButton?
+    var pauseButton : UIButton?
+
     let playerContentView = UIView()
     let progressSlider = UISlider()
     
@@ -111,25 +113,26 @@ class CustomPlayer: UIView {
                    case.readyToPlay:
                        print("视频准备好播放，可以开始播放")
                        player?.play()
-                       playerButton?.isSelected = isPlaying
+                       playerButton?.isHidden = !isPlaying
+                       pauseButton?.isHidden = isPlaying
                        if let playerItem = player?.currentItem {
                            let asset = playerItem.asset
                            let tracks = asset.tracks(withMediaType:.video)
                            let videoTrack = tracks.first!
                            let size = videoTrack.naturalSize
                            var w = self.frame.width
-                           var h = self.frame.height - 100
+                           var h = self.frame.height - 120
                            if(size.width >= size.height){
                                h = size.height / size.width * w
                            } else {
                                w = h * size.width / size.height
                            }
                            
-                           self.playerContentView.frame = CGRect(x: 0, y: (self.frame.height - h)/2 , width: w, height: h)
+                           self.playerContentView.frame = CGRect(x: 0, y: (self.frame.height - h)/2 - (h > w ? 20 : 0), width: w, height: h)
                            self.playerLayer?.frame = self.playerContentView.bounds
-                           self.progressSlider.frame = CGRect(x: 0, y: self.playerContentView.frame.maxY, width: self.frame.width, height: 2)
+                           self.progressSlider.frame = CGRect(x: 0, y: self.playerContentView.frame.maxY+1, width: self.frame.width, height: 2)
                            progressSlider.isHidden = false
-
+                           pauseButton?.frame = self.playerContentView.frame;
                            print("视频原始宽度: \(size.width)，视频原始高度: \(size.height)")
                        }
 
@@ -142,6 +145,8 @@ class CustomPlayer: UIView {
     
     func createSubviews() {
         progressSlider.isUserInteractionEnabled = false
+        progressSlider.minimumTrackTintColor = .white
+        progressSlider.maximumTrackTintColor = .white.withAlphaComponent(0.7)
         progressSlider.minimumValue = 0
         progressSlider.value = 0
         progressSlider.maximumValue = 1
@@ -153,28 +158,27 @@ class CustomPlayer: UIView {
         self.addSubview(playerContentView)
         
         self.addSubview(progressSlider)
-//        guard let videoURL = Bundle.main.url(forResource: "VID_20210118_231016", withExtension: "mp4") else {return}
-
-        
         
         self.backgroundColor = .black
         
-        let closeButton = UIButton(type: .custom)
-        closeButton.frame = CGRect(x: 20, y: 50, width: 50, height: 30)
-        closeButton.setTitle("关闭", for: .normal)
-        closeButton.setTitleColor(.white, for: .normal)
-        closeButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
-        self.addSubview(closeButton)
+        let pauseButton = UIButton(type: .custom)
+        pauseButton.frame = CGRect(x: self.frame.width/2, y: self.frame.height - 100,width: 28, height: 28)
+        pauseButton.setImage(UIImage(named: "video_pause"), for: .normal)
+        pauseButton.setTitleColor(.white, for: .normal)
+        pauseButton.addTarget(self, action: #selector(pauseButtonAction), for: .touchUpInside)
+        self.addSubview(pauseButton)
+        pauseButton.isHidden = true
+        self.pauseButton = pauseButton
+        
         
         let playerButton = UIButton(type: .custom)
-        playerButton.frame = CGRect(x: self.frame.width/2, y: self.frame.height - 100, width: 50, height: 30)
-        playerButton.setTitle("播放", for: .normal)
-        playerButton.setTitle("暂停", for: .selected)
+        playerButton.frame = CGRect(x: self.frame.width/2 - 14, y: self.frame.height - 65,width: 28, height: 28)
+        playerButton.setImage(UIImage(named: "plant_viedo_w24"), for: .normal)
         playerButton.setTitleColor(.white, for: .normal)
         playerButton.addTarget(self, action: #selector(playerButtonAction), for: .touchUpInside)
         self.addSubview(playerButton)
+        playerButton.isHidden = true
         self.playerButton = playerButton
-        
         
         guard let videoURL = URL(string: url) else { return }
         let item = AVPlayerItem(url: videoURL)
@@ -204,6 +208,12 @@ class CustomPlayer: UIView {
         self.item = item
         self.player = player
         self.playerLayer = playerLayer
+        
+        let closeButton = UIButton(type: .custom)
+        closeButton.frame = CGRect(x: 20, y: 50, width: 28, height: 28)
+        closeButton.setImage(UIImage(named: "edit_plant_back24"), for: .normal)
+        closeButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+        self.addSubview(closeButton)
     }
     
     @objc func playerButtonAction(){
@@ -212,7 +222,18 @@ class CustomPlayer: UIView {
         }else{
             play()
         }
-        playerButton?.isSelected = isPlaying
+        playerButton?.isHidden = !isPlaying
+        pauseButton?.isHidden = isPlaying
+    }
+    
+    @objc func pauseButtonAction(){
+        if(isPlaying){
+            pause()
+        }else{
+            play()
+        }
+        playerButton?.isHidden = !isPlaying
+        pauseButton?.isHidden = isPlaying
     }
     
     @objc func closeButtonAction(){
