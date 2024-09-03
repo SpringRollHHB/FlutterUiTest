@@ -141,6 +141,7 @@ class CustomPlayer: UIView {
     }
     
     func createSubviews() {
+        progressSlider.isUserInteractionEnabled = false
         progressSlider.minimumValue = 0
         progressSlider.value = 0
         progressSlider.maximumValue = 1
