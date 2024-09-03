@@ -112,6 +112,27 @@ class CustomPlayer: UIView {
                        print("视频准备好播放，可以开始播放")
                        player?.play()
                        playerButton?.isSelected = isPlaying
+                       if let playerItem = player?.currentItem {
+                           let asset = playerItem.asset
+                           let tracks = asset.tracks(withMediaType:.video)
+                           let videoTrack = tracks.first!
+                           let size = videoTrack.naturalSize
+                           var w = self.frame.width
+                           var h = self.frame.height - 100
+                           if(size.width >= size.height){
+                               h = size.height / size.width * w
+                           } else {
+                               w = h * size.width / size.height
+                           }
+                           
+                           self.playerContentView.frame = CGRect(x: 0, y: (self.frame.height - h)/2 , width: w, height: h)
+                           self.playerLayer?.frame = self.playerContentView.bounds
+                           self.progressSlider.frame = CGRect(x: 0, y: self.playerContentView.frame.maxY, width: self.frame.width, height: 2)
+                           progressSlider.isHidden = false
+
+                           print("视频原始宽度: \(size.width)，视频原始高度: \(size.height)")
+                       }
+
                    default:
                        break
                    }
@@ -125,7 +146,7 @@ class CustomPlayer: UIView {
         progressSlider.maximumValue = 1
         progressSlider.setThumbImage(UIImage(), for: .normal)
         progressSlider.frame = CGRect(x: 0, y: self.frame.height-120, width: self.frame.width, height: 10)
-        
+        progressSlider.isHidden = true
         playerContentView.frame = self.bounds;
         playerContentView.backgroundColor = .black
         self.addSubview(playerContentView)
