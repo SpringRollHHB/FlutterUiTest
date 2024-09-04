@@ -121,13 +121,10 @@ class CustomPlayer: UIView {
                            let videoTrack = tracks.first!
                            let size = videoTrack.naturalSize
                            var w = self.frame.width
-                           var h = self.frame.height - 120
-                           if(size.width >= size.height){
-                               h = size.height / size.width * w
-                           } else {
-                               w = h * size.width / size.height
+                           var h = size.height / size.width * w
+                           if(h > (self.frame.height - 120)){
+                               h = self.frame.height - 120;
                            }
-                           
                            self.playerContentView.frame = CGRect(x: 0, y: (self.frame.height - h)/2 - (h > w ? 20 : 0), width: w, height: h)
                            self.playerLayer?.frame = self.playerContentView.bounds
                            self.progressSlider.frame = CGRect(x: 0, y: self.playerContentView.frame.maxY+1, width: self.frame.width, height: 2)
@@ -185,7 +182,7 @@ class CustomPlayer: UIView {
         let player = AVPlayer(playerItem: item)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
-        playerLayer.videoGravity = .resizeAspect
+        playerLayer.videoGravity = .resize
         playerLayer.contentsScale = UIScreen.main.scale
 
         
