@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
 import 'package:flutteruitest/player.dart';
+import 'layout/widget/route/no_name_result_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,16 +13,36 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Ui Study',
-      home: HomePageWidget(),
+      initialRoute: '/',
+      routes: {
+        "/" : (context) => const HomePageWidget(),
+        NoNameResultWidget.name: (context) => NoNameResultWidget(showTitle: ModalRoute.of(context)?.settings.arguments as String),
+      },
+      onGenerateRoute: (settings) {   //钩子
+          return MaterialPageRoute(builder: (context) {
+            return Container(
+            width: double.infinity,
+            height: double.infinity,
+            alignment: Alignment.center,
+            child: Text(
+              settings.arguments as String,
+              style: const TextStyle(
+                color: Colors.red,
+                decoration: TextDecoration.none,
+                fontSize: 30,
+              ),
+            ),
+          );
+          });
+      },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
   final String title;
 
   @override
