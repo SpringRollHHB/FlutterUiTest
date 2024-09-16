@@ -11,7 +11,7 @@ class GetStateWidget extends StatefulWidget {
 class _GetStateWidgetState extends State<GetStateWidget> {
   bool _showSnackBar = true;
 
-  //同一个 GlobalKey 在整个 widget 树中必须是唯一的，不能重复
+  //同一个 GlobalKey 在整个 widget 树中必须是唯一的，不能重复 (你不能在同一个应用中为不通的widget 设置相同的 GlobalKey)
   final GlobalKey<ScaffoldState> _globalScaffoldStateKey  = GlobalKey();
 
   @override
