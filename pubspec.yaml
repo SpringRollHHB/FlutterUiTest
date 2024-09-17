@@ -76,6 +76,7 @@ flutter:
     - images/caocao.webp
     - images/liubei.webp
     - images/ic_water_dolphin.webp.png
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

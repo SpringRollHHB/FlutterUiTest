@@ -1,10 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
 import 'package:flutteruitest/player.dart';
 import 'layout/widget/route/no_name_result_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  var oldError = FlutterError.onError;
+  FlutterError.onError = (details) {
+    oldError?.call(details);
+    //这里统一处理flutter为我们捕获的异常
+  };
+  runZoned(
+    () => runApp(const MyApp()),
+    zoneSpecification: ZoneSpecification(
+      print: (Zone self, ZoneDelegate parent, Zone zone, String line) {
+        //拦截print事件
+        parent.print(zone, line);
+      },
+      handleUncaughtError: (Zone self, ZoneDelegate parent, Zone zone, Object error, StackTrace stackTrace) {
+        //拦截未处理的error
+        parent.print(zone, error.toString());
+      },
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
