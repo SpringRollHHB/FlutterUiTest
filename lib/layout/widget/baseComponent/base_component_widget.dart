@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../popscope_widget.dart';
+
 class BaseComponentWidget extends StatefulWidget {
   const BaseComponentWidget({super.key});
 
@@ -157,6 +159,17 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                     ),),
                   ],
                 ),),
+              GestureDetector(
+                onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return const PopScopeWidget();
+                    }));
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text("PopScope测试",style: TextStyle(color: Colors.white,fontSize: 15),),
+                ),
+              ),
             ],
           ),
         ),
