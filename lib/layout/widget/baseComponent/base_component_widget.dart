@@ -14,8 +14,22 @@ class BaseComponentWidget extends StatefulWidget {
 class _BaseComponentWidgetState extends State<BaseComponentWidget> {
 
   bool _switchOn = false;
-  List<bool> _checkboxOns = [false,false,false];
+  final List<bool> _checkboxOns = [false,false,false];
   String _radioValue = "1";
+  FocusNode focusNode1 = FocusNode();
+  FocusNode focusNode2 = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode1.addListener(() {
+      debugPrint("BaseComponentWidget focusNode 1 has changed : ${focusNode1.hasFocus}");
+    });
+
+    focusNode2.addListener(() {
+      debugPrint("BaseComponentWidget focusNode 2 has changed : ${focusNode2.hasFocus}");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +183,72 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                   padding: EdgeInsets.only(bottom: 10),
                   child: Text("PopScope测试",style: TextStyle(color: Colors.white,fontSize: 15),),
                 ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(focusNode1);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10,top: 10,bottom: 10),
+                        alignment: Alignment.center,
+                        color: Colors.blue,
+                        child: const Text(
+                          "用户名",
+                          style: TextStyle(color: Colors.white,fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(focusNode2);
+                      },
+                      child: Container(
+                        color: Colors.blue,
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "密码",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: TextField(
+                        focusNode: focusNode1,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.person),
+                          hintText: "用户名或者邮箱",
+                          labelText: "用户名",
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      focusNode: focusNode2,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.password),
+                        hintText: "你的登录密码",
+                        labelText: "密码",
+                      ),
+                      obscureText: true,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
