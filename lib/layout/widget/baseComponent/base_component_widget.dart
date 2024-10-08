@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../popscope_widget.dart';
 
 class BaseComponentWidget extends StatefulWidget {
@@ -18,6 +15,7 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
   String _radioValue = "1";
   FocusNode focusNode1 = FocusNode();
   FocusNode focusNode2 = FocusNode();
+  final GlobalKey _formKey = GlobalKey();
 
   @override
   void initState() {
@@ -40,7 +38,7 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
           color: Colors.black,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             children: [
               const DefaultTextStyle(
                 style: TextStyle(color: Colors.amber, fontSize: 15),
@@ -249,6 +247,59 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height:10,),
+              Form(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        autofocus: true,
+                        decoration: const InputDecoration(
+                          hintText: "用户名",
+                          icon: Icon(Icons.person),
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                        validator: (v) {
+                          return v!.trim().isNotEmpty ? null : "用户名不能为空";
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        obscureText: true,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                          hintText: "密码",
+                          icon: Icon(Icons.password),
+                        ),
+                        validator: (v) {
+                          return v!.trim().length > 5 ? null : "密码不能低于6位";
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  if((_formKey.currentState as FormState).validate()) {
+                    debugPrint("BaseComponentWidget 已经保存数据了");
+                  }
+                },
+                child: Container(
+                  color: Colors.red,
+                  width: double.infinity,
+                  height: 40,
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.only(top: 10,left: 10,right: 10),
+                  child: const Text(
+                    "统一进行校验",
+                    style: TextStyle(color: Colors.black,fontSize: 20),
+                  )
+                ),
               ),
             ],
           ),
