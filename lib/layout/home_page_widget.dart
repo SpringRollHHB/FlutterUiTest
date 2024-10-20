@@ -9,6 +9,8 @@ import 'package:flutteruitest/layout/widget/route/route_manage_widget.dart';
 import 'package:flutteruitest/layout/widget_test_Page.dart';
 import 'package:flutteruitest/player.dart';
 
+import 'custom_paint_widget.dart';
+
 class HomePageWidget extends StatefulWidget {
 
   const HomePageWidget({super.key});
@@ -29,6 +31,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: "可滚动widget", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ScrollablePageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
     list.add(HomeItem(title: "路由传值", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => RouteManageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
     list.add(HomeItem(title: "基础组件", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BaseComponentWidget())); }));
+    list.add(HomeItem(title: "自定义组件-CustomPaint", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const CustomPaintWidget())); }));
   }
 
   @override
