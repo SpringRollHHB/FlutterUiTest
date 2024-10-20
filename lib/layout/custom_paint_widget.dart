@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/widget/chess_piece_widget.dart';
+import 'package:flutteruitest/layout/widget/custom_circle_progress.dart';
 
 class CustomPaintWidget extends StatefulWidget {
   const CustomPaintWidget({super.key});
@@ -20,6 +21,8 @@ class _CustomPaintWidgetState extends State<CustomPaintWidget> {
           children: [
             SizedBox(height: MediaQuery.of(context).padding.top,width: double.infinity,),
             const ChessPieceWidget(),
+            const SizedBox(height: 10,),
+            // const CustomCircleProgress()
           ],
         ),
       ),
