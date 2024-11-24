@@ -9,6 +9,10 @@ class PopScopeWidget extends StatefulWidget {
 }
 
 class _PopScopeWidgetState extends State<PopScopeWidget> {
+
+  /*
+  * 在 Flutter 3.16 中，WillPopScope 已被弃用，推荐使用 PopScope 来替代。通过 PopScope 组件的定义，我们了解到其工作原理和用法。当 canPop 为 true 时，系统返回手势将正常弹出封闭的 Navigator，并调用 onPopInvoked 方法。如果 canPop 为 false，则返回手势不会从导航器中弹出路由，但仍会触发 onPopInvoked 方法，此时我们可以根据需要进行逻辑判断或插入其他代码。需要注意的是，onPopInvoked 方法会再次被调用，但此时 didPop 为 true。在 onPopInvoked 中，我们应该根据 didPop 的值进行判断并进行相应的处理
+  * */
   
   final TextEditingController textEditingController = TextEditingController();
   final FocusNode focusNode = FocusNode();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../inherited_widget.dart';
 import '../popscope_widget.dart';
 import '../will_pop_scope_widget.dart';
 
@@ -311,6 +312,20 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                     "统一进行校验",
                     style: TextStyle(color: Colors.black,fontSize: 20),
                   )
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return const InheritedTestWidget();
+                  }));
+                },
+                child: Container(
+                  color: Colors.white,
+                  margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  alignment: Alignment.center,
+                  child: const Text("InheritedWidget-共享数据",style: TextStyle(color: Colors.black,fontSize: 20),),
                 ),
               ),
             ],
