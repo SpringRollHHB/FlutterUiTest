@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../popscope_widget.dart';
+import '../will_pop_scope_widget.dart';
 
 class BaseComponentWidget extends StatefulWidget {
   const BaseComponentWidget({super.key});
@@ -180,6 +181,17 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                 child: const Padding(
                   padding: EdgeInsets.only(bottom: 10),
                   child: Text("PopScope测试",style: TextStyle(color: Colors.white,fontSize: 15),),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return const WillPopScopeWidget();
+                  }));
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text("WillPopScope测试",style: TextStyle(color: Colors.white,fontSize: 15),),
                 ),
               ),
               Row(

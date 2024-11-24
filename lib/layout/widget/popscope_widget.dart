@@ -33,6 +33,8 @@ class _PopScopeWidgetState extends State<PopScopeWidget> {
                 lastTime = now;
               }
             }
+          } else {
+            return;
           }
         },
         child: Container(
