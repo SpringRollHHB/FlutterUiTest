@@ -27,6 +27,6 @@ class _ShareDataChildWidgetState extends State<ShareDataChildWidget> {
     //build中必须引用->ShareDataWidget.of(context)?.data
     //ShareDataWidget.of(context)?.data.toString() ??
     debugPrint("ShareDataChildWidget  build data:");
-    return Text(ShareDataWidget.of(context)?.data.toString() ??"-1",style: const TextStyle(color: Colors.black,fontSize: 15),);
+    return Text(ShareDataWidget.of(context)?.data.toString() ??"-1",style: TextStyle(color: Colors.blue.shade500,fontSize: 15),);
   }
 }

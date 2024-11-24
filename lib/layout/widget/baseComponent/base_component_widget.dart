@@ -328,10 +328,70 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                   child: const Text("InheritedWidget-共享数据",style: TextStyle(color: Colors.black,fontSize: 20),),
                 ),
               ),
+              Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                color: Colors.white,
+                child: FutureBuilder<String>(
+                  future: simulateNetWork(),
+                  builder: (context, snapshot) {
+                    debugPrint("FutureBuilder  snapshot:$snapshot");
+                    if(snapshot.connectionState == ConnectionState.done) {
+                      if(snapshot.hasError) {
+                        return Text("加载出现问题:${snapshot.error}",style: const TextStyle(color: Colors.red),);
+                      } else {
+                        return Text("加载成功:${snapshot.data}",style: const TextStyle(color: Colors.red));
+                      }
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                color: Colors.white,
+                // 凡是UI会依赖多个异步数据而发生变化的场景都可以使用->StreamBuilder
+                child: StreamBuilder<int>(
+                  stream: counter(),
+                  builder: (context, snapshot) {
+                    debugPrint("StreamBuilder  snapshot:$snapshot");
+                    if(snapshot.hasError) {
+                      return Text("Stream 加载出现问题:${snapshot.error}",style: const TextStyle(color: Colors.red),);
+                    } else {
+                      switch(snapshot.connectionState) {
+                        case ConnectionState.done :
+                          return const Text("stream 已经结束",style: TextStyle(color: Colors.red),);
+                        case ConnectionState.active :
+                          return Text("${snapshot.data}",style: const TextStyle(color: Colors.red),);
+                        case ConnectionState.waiting :
+                          return const CircularProgressIndicator();
+                        case ConnectionState.none :
+                          return const Text("没有 Stream",style: TextStyle(color: Colors.red),);
+                      }
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<String> simulateNetWork() async {
+    return Future.delayed(const Duration(seconds: 5),() => "FutureBuild 加载完成");
+  }
+
+  Stream<int> counter() {
+    return Stream.periodic(const Duration(seconds: 1), (i) {
+      return i;
+    });
   }
 }
