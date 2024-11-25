@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../inherited_widget.dart';
 import '../popscope_widget.dart';
 import '../will_pop_scope_widget.dart';
@@ -99,6 +100,26 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                     ),
                   ),
                 ],),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15),
+                width: double.infinity,
+                color: Colors.blue,
+                alignment: Alignment.center,
+                height: 50,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      color: Colors.red,
+                      child: const Text("宽度测试",style: TextStyle(letterSpacing: 0.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
+                    ),
+                    Container(
+                      color: Colors.black,
+                      child: const Text("宽度测试",style: TextStyle(letterSpacing: 1.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
+                    ),
+                  ],
+                ),
               ),
               Row(children: [
                 Expanded(child: OutlinedButton(onPressed: () {}, child: const Text("OutlinedButton"),),),
