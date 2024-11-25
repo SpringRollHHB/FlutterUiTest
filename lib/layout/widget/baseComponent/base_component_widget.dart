@@ -109,14 +109,25 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                 height: 50,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      color: Colors.red,
-                      child: const Text("宽度测试",style: TextStyle(letterSpacing: 0.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          color: Colors.red,
+                          child: const Text("Space0.0宽度测试",style: TextStyle(letterSpacing: 0.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
+                        ),
+                        Container(
+                          color: Colors.black,
+                          child: const Text("Space1.0宽度测试",style: TextStyle(letterSpacing: 1.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
+                        )
+                      ],
                     ),
                     Container(
                       color: Colors.black,
-                      child: const Text("宽度测试",style: TextStyle(letterSpacing: 1.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
+                      child: const Text("Space1.0宽度测试",style: TextStyle(letterSpacing: 1.0,color:Colors.white,fontSize: 18,fontWeight: FontWeight.w400,height: 1.0),),
                     ),
                   ],
                 ),
