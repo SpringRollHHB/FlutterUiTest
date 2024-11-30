@@ -410,6 +410,161 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                   },
                 ),
               ),
+              GestureDetector(
+                onTap: () async {
+                  var result = await showDialog(
+                    context: context,
+                    builder: (ctx) {
+                      return AlertDialog(
+                        title: const Text(
+                          "这是一个alertDialog",
+                          style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w600),
+                        ),
+                        content: Image.asset(
+                          "images/liubei.webp",
+                          height: 30,
+                          width: 30,
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(ctx).pop(false),
+                            child: const Text("取消",style: TextStyle(color: Colors.black,fontSize: 10),),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.of(ctx).pop(true),
+                            child: const Text("确定",style: TextStyle(color: Colors.black,fontSize: 10),),
+                          )
+                        ],
+
+                      );
+                    },
+                    barrierDismissible: true
+                  );
+                  debugPrint("ShowAlertDialog result:$result");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: const Text(
+                    "AlertDialog",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        height: 1.0,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  var result = await showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return SimpleDialog(
+                          title: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Image.asset(
+                              "images/image_car_1.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          children: [
+                            SimpleDialogOption(
+                              onPressed: () => Navigator.of(context).pop("中文简体"),
+                              child: const Text("中文简体",style: TextStyle(color: Colors.black,fontSize: 15),),
+                            ),
+                            SimpleDialogOption(
+                              onPressed: () => Navigator.of(context).pop("中文繁体"),
+                              child: const Text("中文繁体",style: TextStyle(color: Colors.black,fontSize: 15),),
+                            )
+                          ],
+                        );
+                      },
+                      barrierDismissible: true
+                  );
+                  debugPrint("ShowSimpleDialog result:$result");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: const Text(
+                    "SimpleDialog",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        height: 1.0,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  var result = await showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return Dialog(
+                          child: Column(
+                            children: [
+                              const Text("List-Dialog",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600),),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: 100,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () => Navigator.of(context).pop(index),
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 15),
+                                          child: Text("$index个",style: const TextStyle(color: Colors.black,fontSize: 10),),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      barrierDismissible: true
+                  );
+                  debugPrint("ShowDialog result:$result");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: const Text(
+                    "Dialog",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        height: 1.0,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
