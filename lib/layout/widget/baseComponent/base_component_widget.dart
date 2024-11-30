@@ -565,6 +565,94 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                   ),
                 ),
               ),
+              GestureDetector(
+                onTap: () async {
+                  var result = await showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return Container(
+                          height: 150,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(15)
+                          ),
+                          child: const Text(
+                            "builder不嵌套",
+                            style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w700),
+                          ),
+                        );
+                      },
+                      barrierDismissible: true
+                  );
+                  debugPrint("ShowDialog result:$result");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: const Text(
+                    "Dialog-builder不嵌套",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        height: 1.0,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  var result = await showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return Dialog(
+                          child: Container(
+                            height: 150,
+                            width: double.infinity,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: const Text(
+                              "builder不嵌套",
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        );
+                      },
+                      barrierDismissible: true
+                  );
+                  debugPrint("ShowDialog result:$result");
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: const Text(
+                    "Dialog-builder嵌套-dialog",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        height: 1.0,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
