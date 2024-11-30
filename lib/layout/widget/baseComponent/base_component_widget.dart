@@ -678,7 +678,7 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                     barrierDismissible: true,
                     barrierLabel: '',
                     barrierColor: Colors.red.withOpacity(0.5),
-                    transitionDuration: const Duration(milliseconds: 150),
+                    transitionDuration: const Duration(milliseconds: 1500),
                     transitionBuilder: (context, animation, secondaryAnimation, child) {
                       return ScaleTransition(
                         scale: CurvedAnimation(
@@ -704,7 +704,7 @@ class _BaseComponentWidgetState extends State<BaseComponentWidget> {
                     "showGeneralDialog-Dialog",
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: 18,
                         height: 1.0,
                         fontWeight: FontWeight.w500
                     ),
