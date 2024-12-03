@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteruitest/layout/widget/circle_remove_widget.dart';
 
 class EventHandlingNotificationPage extends StatefulWidget {
   const EventHandlingNotificationPage({super.key});
@@ -106,6 +107,10 @@ class _EventHandlingNotificationPageState extends State<EventHandlingNotificatio
                 ),
               ),
               onPointerDown: (event) => debugPrint("IgnorePointer down-1"),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: const CircleRemoveWidget(),
             )
           ],
         ),
