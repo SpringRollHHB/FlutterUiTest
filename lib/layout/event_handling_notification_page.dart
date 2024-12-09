@@ -10,6 +10,7 @@ class EventHandlingNotificationPage extends StatefulWidget {
 
 class _EventHandlingNotificationPageState extends State<EventHandlingNotificationPage> {
   PointerEvent? _pointerEvent;
+  double _width = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +112,34 @@ class _EventHandlingNotificationPageState extends State<EventHandlingNotificatio
             Container(
               margin: const EdgeInsets.all(10),
               child: const CircleRemoveWidget(),
-            )
+            ),
+            GestureDetector(
+              onTap: () => debugPrint("tapTest -> onTap()"),
+              onDoubleTap: () => debugPrint("tapTest -> onDoubleTap()"),
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(15)),
+                height: 50,
+                alignment: Alignment.center,
+                child: const Text("onTap测试",style: TextStyle(color: Colors.white,fontSize: 20,height: 1.0),),
+              ),
+            ),
+            StatefulBuilder(builder: (ctx, _setState) {
+              return GestureDetector(
+                child: Image.asset(
+                  "images/guanyu.webp",
+                  height: _width,
+                  width: _width,
+                ),
+                onScaleUpdate: (event) {
+                  _width = 200 * event.scale;
+                  _setState(() {
+
+                  });
+                },
+              );
+            }),
+            const SizedBox(height: 50,)
           ],
         ),
       ),

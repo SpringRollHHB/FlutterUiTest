@@ -12,6 +12,7 @@ class _CircleRemoveWidgetState extends State<CircleRemoveWidget> {
   double _left = 0.0;
 
 
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,21 +29,33 @@ class _CircleRemoveWidgetState extends State<CircleRemoveWidget> {
             Positioned(
               left: _left,
               top: _top,
-              child: const CircleAvatar(child: Text("A")),
+              child: const CircleAvatar(child: Text("A",style: TextStyle(fontSize: 15),),),
             ),
           ],
         ),
       ),
-      onPanDown: (event) => debugPrint("CircleRemoveWidget  用户手指按下 ${event.globalPosition}"),
-      onPanUpdate: (event) {
-        debugPrint("CircleRemoveWidget 滑动 dy:${event.delta.dy}   dx:${event.delta.dx}");
+      onVerticalDragUpdate: (event) {
         _top += event.delta.dy;
-        _left += event.delta.dx;
         setState(() {
 
         });
       },
-      onPanEnd: (event) => debugPrint("CircleRemoveWidget 滑动结束 ${event.velocity}"),
+      // onHorizontalDragUpdate: (event) {
+      //   _left += event.delta.dx;
+      //   setState(() {
+      //
+      //   });
+      // },
+      // onPanDown: (event) => debugPrint("CircleRemoveWidget  用户手指按下 ${event.globalPosition}"),
+      // onPanUpdate: (event) {
+      //   debugPrint("CircleRemoveWidget 滑动 dy:${event.delta.dy}   dx:${event.delta.dx}");
+      //   _top += event.delta.dy;
+      //   _left += event.delta.dx;
+      //   setState(() {
+      //
+      //   });
+      // },
+      // onPanEnd: (event) => debugPrint("CircleRemoveWidget 滑动结束 ${event.velocity}"),
     );
   }
 }
