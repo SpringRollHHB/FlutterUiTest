@@ -12,6 +12,7 @@ import 'package:flutteruitest/player.dart';
 import 'custom_paint_widget.dart';
 import 'dong_hua_widget.dart';
 import 'event_handling_notification_page.dart';
+import 'file_network_action_page.dart';
 
 class HomePageWidget extends StatefulWidget {
 
@@ -36,6 +37,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: "自定义组件-CustomPaint", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const CustomPaintWidget())); }));
     list.add(HomeItem(title: "动画", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const DongHuaWidget())); }));
     list.add(HomeItem(title: " 事件处理与通知", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const EventHandlingNotificationPage())); }));
+    list.add(HomeItem(title: " 文件操作与网络操作", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const FileNetworkActionPage())); }));
   }
 
   @override
