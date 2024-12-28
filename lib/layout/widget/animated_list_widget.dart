@@ -28,6 +28,7 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
             initialItemCount: count,
             itemBuilder: (ctx, index, animation) {
               debugPrint("AnimatedListWidget animation:${animation.value}");
+              //添加列表项时会执行渐显动画 animation.value 会从0变为1
               return FadeTransition(
                 opacity: animation,
                 child: ScaleTransition(
@@ -109,6 +110,7 @@ class _AnimatedListWidgetState extends State<AnimatedListWidget> {
   }
 
   void _removeItem(int index) {
+    // 删除过程执行的是反向动画，animation.value 会从1变为0
     globalKey.currentState?.removeItem(
       index,
       (context, animation) {
