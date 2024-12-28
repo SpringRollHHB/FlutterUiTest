@@ -46,9 +46,24 @@ class _CustomPageWidgetState extends State<CustomPageWidget> {
                     child: Container(
                         color: Colors.red, height: 200, width: double.infinity)),
                 SliverPersistentHeader(
-                    delegate: MySliverPersistentHeaderDelegate(
-                        height: 60, child: Container(color: Colors.blue,child: const Center(child: Text("北京欢迎你",style: TextStyle(color: Colors.green,fontSize: 25,decoration: TextDecoration.none))))),
-                    pinned: true),
+                        delegate: MySliverPersistentHeaderDelegate(
+                          height: 60,
+                          child: Container(
+                            color: Colors.blue,
+                            child: const Center(
+                              child: Text(
+                                "北京欢迎你",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 25,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        pinned: true,
+                      ),
                 SliverToBoxAdapter(
                     child: Container(
                         color: Colors.amberAccent,
