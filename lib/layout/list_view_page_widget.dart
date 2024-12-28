@@ -2,6 +2,7 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutteruitest/layout/widget/animated_list_widget.dart';
 
 
 /*
@@ -50,8 +51,10 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
   Widget build(BuildContext context) {
     Widget divider1 = const Divider(color: Colors.blue);
     Widget divider2 = const Divider(color: Colors.green);
-    return PageView(
-      children: [buildColumnOne(divider1, divider2), buildColumnTwo()],
+    return Scaffold(
+      body: PageView(
+        children: [buildColumnOne(divider1, divider2), buildColumnTwo(),buildColumnThree()],
+      ),
     );
   }
 
@@ -172,22 +175,6 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
     ]);
   }
 
-  void _loadItems() {
-    Future.delayed(const Duration(seconds: 4)).then((value) {
-      for (int i = 0; i < 20; i++) {
-        _words.insert(_words.length-1, getRandomChar());
-      }
-      setState(() {  });
-    });
-  }
-
-  String getRandomChar() {
-    const String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    Random random = Random();
-    int randomIndex = random.nextInt(chars.length);
-    return chars[randomIndex];
-  }
-
   Column buildColumnOne(Widget divider1, Widget divider2) {
     return Column(children: [
       Container(
@@ -277,4 +264,36 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
                       fontSize: 10))))
     ]);
   }
+
+  Widget buildColumnThree() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(height: MediaQuery.of(context).padding.top,),
+        const Text(
+          "AnimatedList",
+          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w700),
+        ),
+        const AnimatedListWidget(),
+      ],
+    );
+  }
+
+  void _loadItems() {
+    Future.delayed(const Duration(seconds: 4)).then((value) {
+      for (int i = 0; i < 20; i++) {
+        _words.insert(_words.length-1, getRandomChar());
+      }
+      setState(() {  });
+    });
+  }
+
+  String getRandomChar() {
+    const String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    Random random = Random();
+    int randomIndex = random.nextInt(chars.length);
+    return chars[randomIndex];
+  }
+
 }
