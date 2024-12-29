@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutteruitest/layout/widget/sliver_flexible_header_widget.dart';
 
 class CustomScrollViewPage extends StatefulWidget {
@@ -9,9 +11,25 @@ class CustomScrollViewPage extends StatefulWidget {
 }
 
 class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
+
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      ///监听滚动位置设置导航栏颜色
+      setState(() {
+        showBlack = _scrollController.offset > 200 - 50 ? true : false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: PageView(
         children: [
           _buildOne(),
@@ -22,6 +40,8 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
       ),
     );
   }
+
+  bool showBlack = false;
 
   Widget _buildOne() {
     return CustomScrollView(
@@ -168,28 +188,51 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
 
   Widget _buildThree() {
     return NestedScrollView(
+      controller: _scrollController,
       headerSliverBuilder: (BuildContext ctx, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(ctx),
             sliver: SliverAppBar(
-              // pinned: true,
-              floating: true,
-              snap: true,
-              expandedHeight: 250,
-              backgroundColor: Colors.white,
+              pinned: true,
+              stretch: true,
+              toolbarHeight: 50,
+              expandedHeight: 200,
+              elevation: 0,
+              snap: false,
+              backgroundColor: const Color(0xff8D62FF),
+              leading: IconButton(
+                  icon: Image.asset(
+                    "images/image_car_2.png",
+                    height: 36,
+                    width: 36,
+                    color: Colors.red,
+                  ),
+                  onPressed: () {
+
+                  }),
               flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  "NestedScrollView",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
+                title: showBlack
+                    ? const Padding(
+                        padding: EdgeInsets.only(right: 50),
+                        child: Text(
+                          "NestedScrollView",
+                          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
+                        ),
+                      )
+                    : const Text(''),
+                background: Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.white,
+                  child: Image.asset(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    "images/ic_water_dolphin.webp.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                background: Image.asset(
-                  "images/ic_water_dolphin.webp.png",
-                  fit: BoxFit.cover,
-                ),
+                centerTitle: true,
               ),
             ),
           ),
