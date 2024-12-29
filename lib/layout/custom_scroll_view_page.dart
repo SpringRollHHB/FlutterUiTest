@@ -16,6 +16,7 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
         children: [
           _buildOne(),
           _buildTwo(),
+          _buildThree(),
         ],
       ),
     );
@@ -148,14 +149,99 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
   }
 
   Widget _buildTwo() {
-    return CustomScrollView(
-      physics: BouncingScrollPhysics(),
-      slivers: [
-        SliverFlexibleHeaderWidget(
-          visibleExtent: 200,
-          
-        ),
-      ],
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.red,
+    );
+    // return CustomScrollView(
+    //   physics: BouncingScrollPhysics(),
+    //   slivers: [
+    //     SliverFlexibleHeaderWidget(
+    //       visibleExtent: 200,
+    //
+    //     ),
+    //   ],
+    // );
+  }
+
+  Widget _buildThree() {
+    return NestedScrollView(
+      headerSliverBuilder: (BuildContext ctx, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverOverlapAbsorber(
+            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(ctx),
+            sliver: SliverAppBar(
+              // pinned: true,
+              floating: true,
+              snap: true,
+              expandedHeight: 250,
+              backgroundColor: Colors.white,
+              flexibleSpace: FlexibleSpaceBar(
+                title: const Text(
+                  "NestedScrollView",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700),
+                ),
+                background: Image.asset(
+                  "images/ic_water_dolphin.webp.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          SliverFixedExtentList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  margin: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "$index",
+                    style: const TextStyle(color: Colors.black,fontSize: 15,height: 1.0),
+                  ),
+                );
+              },
+            childCount: 50,
+          ),
+            itemExtent: 80,),
+        ];
+      },
+      body: Builder(builder: (ctx) {
+        return CustomScrollView(
+          slivers: [
+            SliverOverlapInjector(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(ctx),
+            ),
+            SliverFixedExtentList(delegate: SliverChildBuilderDelegate((context,index) {
+              return Center(
+                child: Container(
+                  width: 100,
+                  height: double.infinity,
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "$index",
+                    style: const TextStyle(color: Colors.white,fontSize: 20,height: 1.0,),
+                  ),
+                ),
+              );
+            }), itemExtent: 100,),
+          ],
+        );
+      }),
     );
   }
 
