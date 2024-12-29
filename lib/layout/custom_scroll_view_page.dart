@@ -17,6 +17,7 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
           _buildOne(),
           _buildTwo(),
           _buildThree(),
+          _buildFour(),
         ],
       ),
     );
@@ -242,6 +243,83 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
           ],
         );
       }),
+    );
+  }
+
+  Widget _buildFour() {
+    return NestedScrollView(
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 250,
+            backgroundColor: Colors.white,
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text(
+                "NestedScrollView",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700),
+              ),
+              background: Image.asset(
+                "images/ic_water_dolphin.webp.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ];
+      },
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: 20,
+              itemBuilder: (ctx,index) {
+                return Center(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "$index",
+                      style: const TextStyle(color: Colors.red,fontSize: 20,fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 20,
+              itemBuilder: (ctx,index) {
+                return Center(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "-$index-",
+                      style: const TextStyle(color: Colors.red,fontSize: 20,fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
