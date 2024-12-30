@@ -21,7 +21,7 @@ class _CustomScrollViewPageState extends State<CustomScrollViewPage> {
     _scrollController.addListener(() {
       ///监听滚动位置设置导航栏颜色
       setState(() {
-        showBlack = _scrollController.offset > 200 - 50 ? true : false;
+        showBlack = _scrollController.offset > 200 - 100 ? true : false;
       });
     });
   }
