@@ -11,11 +11,12 @@ class SceneBackWidget extends StatefulWidget {
 }
 
 class _SceneBackWidgetState extends State<SceneBackWidget> {
-  int count = 3;
+  int count = 4;
   late GlobalKey _globalKey;
   final GlobalKey _test1 = GlobalKey();
   final GlobalKey _test2 = GlobalKey();
   final GlobalKey _test3 = GlobalKey();
+  final GlobalKey _test4 = GlobalKey();
 
   @override
   void initState() {
@@ -129,6 +130,29 @@ class _SceneBackWidgetState extends State<SceneBackWidget> {
           Center(
             child: SceneBackChildInnerWidget(testKey: _test3,),
           ),
+          Positioned(
+            right: 20,
+            bottom: 20,
+            child: Container(
+              key: _test4,
+              margin: const EdgeInsets.all(20),
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              alignment: Alignment.center,
+              child: const Text(
+                "test4",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  height: 1.0,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -158,6 +182,10 @@ class _SceneBackWidgetState extends State<SceneBackWidget> {
       }
       case 2 : {
         _globalKey = _test3;
+        break;
+      }
+      case 3 : {
+        _globalKey = _test4;
         break;
       }
     }
