@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
+import 'package:flutteruitest/layout/widget/single_ton.dart';
 import 'package:flutteruitest/player.dart';
 import 'layout/widget/route/no_name_result_widget.dart';
 
@@ -28,10 +29,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SingleTon.singleTon;
     return MaterialApp(
       title: 'Flutter Ui Study',
       initialRoute: '/',
