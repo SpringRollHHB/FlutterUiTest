@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteruitest/layout/widget/cal_text_height_width_widget.dart';
 import 'package:flutteruitest/layout/widget/text_timer_progress_widget.dart';
 
 class ApusStudioWidgetPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class _ApusStudioWidgetPageState extends State<ApusStudioWidgetPage> {
           children: [
             SizedBox(height: MediaQuery.of(context).padding.top,),
             TextTimerProgressWidget(),
+            const SizedBox(height: 10,),
+            const CalTextHeightWidthWidget(),
           ],
         ),
       ),
