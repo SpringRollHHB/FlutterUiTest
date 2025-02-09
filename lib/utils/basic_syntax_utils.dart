@@ -47,4 +47,51 @@ class BasicSyntaxUtils {
     return set.toString();
   }
 
+  static String method7() {
+
+    void changeValue(int value) {
+      value = value+1;
+    }
+
+    int number = 10;
+    changeValue(number);
+    return number.toString();
+  }
+
+  static String method8() {
+    void changeValue(List<String> list) {
+      list.add("3");
+    }
+    List<String> list = ["1","2"];
+    changeValue(list);
+    return list.toString();
+  }
+
+  static String method9() {
+    String result = """he's mother say "hello every" i say too "hello two""""";
+    return result;
+  }
+
+  static String method10() {
+    String result = "he's mother say \"hello every\" i say too \"hello two\"";
+    return result;
+  }
+
+  static String method11() {
+    String lambdaOne(String str) => "${str}1";
+    return lambdaOne("2");
+  }
+
+  static String method12() {
+
+    lambdaTwo(List<String> l) => {
+      l.add("lamdda")
+    };
+
+    List<String> list = ["1","2"];
+    lambdaTwo(list);
+
+    return list.toString();
+  }
+
 }
