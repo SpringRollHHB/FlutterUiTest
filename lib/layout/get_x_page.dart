@@ -15,8 +15,9 @@ class _GetXPageState extends State<GetXPage> {
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: MediaQuery.of(context).padding.top,),
+            SizedBox(height: MediaQuery.of(context).padding.top + 5,),
             GestureDetector(
               onTap: () => GetXUtils.showDefaultDialog(),
               child: Container(
@@ -29,7 +30,7 @@ class _GetXPageState extends State<GetXPage> {
                     borderRadius: BorderRadius.circular(5)
                 ),
                 child: const Text(
-                  "GetX-default-dialog",
+                  "GetX-Default-Dialog-无用",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -51,7 +52,7 @@ class _GetXPageState extends State<GetXPage> {
                     borderRadius: BorderRadius.circular(5)
                 ),
                 child: const Text(
-                  "GetX-snackbar",
+                  "GetX-SnackBar-无用",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -73,7 +74,7 @@ class _GetXPageState extends State<GetXPage> {
                     borderRadius: BorderRadius.circular(5)
                 ),
                 child: const Text(
-                  "GetX-bottom-sheet-很好用",
+                  "GetX-Bottom-Sheet-很好用",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -82,7 +83,18 @@ class _GetXPageState extends State<GetXPage> {
                   ),
                 ),
               ),
-            )
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: Text(
+                "路由管理",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
           ],
         ),
       ),

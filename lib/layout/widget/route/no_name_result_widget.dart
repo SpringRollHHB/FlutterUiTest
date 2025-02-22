@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NoNameResultWidget extends StatelessWidget {
-  static const String name = "NoNameResultWidget";
+  static const String name = "/NoNameResultWidget";
 
   final String showTitle;
   const NoNameResultWidget({super.key, required this.showTitle});

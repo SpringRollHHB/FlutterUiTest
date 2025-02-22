@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:math';
+import 'package:flutteruitest/routers.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
 import 'package:flutteruitest/layout/widget/single_ton.dart';
 import 'package:flutteruitest/player.dart';
+import 'layout/get_x_route_one.dart';
 import 'layout/widget/route/no_name_result_widget.dart';
 
 void main() {
@@ -35,28 +38,32 @@ class MyApp extends StatelessWidget {
     SingleTon.singleTon;
     return GetMaterialApp(
       title: 'Flutter Ui Study',
-      initialRoute: '/',
-      routes: {
-        "/" : (context) => const HomePageWidget(),
-        NoNameResultWidget.name: (context) => NoNameResultWidget(showTitle: ModalRoute.of(context)?.settings.arguments as String),
-      },
-      onGenerateRoute: (settings) {   //钩子
-          return MaterialPageRoute(builder: (context) {
-            return Container(
-            width: double.infinity,
-            height: double.infinity,
-            alignment: Alignment.center,
-            child: Text(
-              settings.arguments as String,
-              style: const TextStyle(
-                color: Colors.red,
-                decoration: TextDecoration.none,
-                fontSize: 30,
-              ),
-            ),
-          );
-          });
-      },
+      initialRoute: "/",
+      // routes: {
+      //   "/" : (context) => const HomePageWidget(),
+      //   NoNameResultWidget.name: (context) {
+      //     debugPrint("NoNameResultWidget.name...routes");
+      //     return NoNameResultWidget(showTitle: ModalRoute.of(context)?.settings.arguments as String);
+      //   },
+      // },
+      // onGenerateRoute: (settings) {   //钩子-中间件
+      //     return MaterialPageRoute(builder: (context) {
+      //       return Container(
+      //       width: double.infinity,
+      //       height: double.infinity,
+      //       alignment: Alignment.center,
+      //       child: Text(
+      //         settings.arguments as String,
+      //         style: const TextStyle(
+      //           color: Colors.red,
+      //           decoration: TextDecoration.none,
+      //           fontSize: 30,
+      //         ),
+      //       ),
+      //     );
+      //     });
+      // },
+      getPages: RouterPages.routers,
     );
   }
 }
