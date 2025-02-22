@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
 import 'package:flutteruitest/layout/widget/single_ton.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SingleTon.singleTon;
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Ui Study',
       initialRoute: '/',
       routes: {

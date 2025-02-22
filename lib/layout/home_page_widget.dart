@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/apus_page_widget.dart';
+import 'package:flutteruitest/layout/get_x_page.dart';
 import 'package:flutteruitest/layout/scrollable_page_widget.dart';
 import 'package:flutteruitest/layout/widget/baseComponent/base_component_widget.dart';
 import 'package:flutteruitest/layout/widget/route/route_manage_widget.dart';
@@ -40,6 +41,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: " 事件处理与通知", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const EventHandlingNotificationPage())); }));
     list.add(HomeItem(title: " 文件操作与网络操作", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const FileNetworkActionPage())); }));
     list.add(HomeItem(title: "基本语法", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BasicSyntaxPage())); }));
+    list.add(HomeItem(title: "GetX-使用", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const GetXPage())); }));
 
   }
 
