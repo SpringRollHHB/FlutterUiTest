@@ -6,6 +6,7 @@ import 'package:flutteruitest/utils/get_x_utils.dart';
 import 'package:get/get.dart';
 
 import 'get_x_count_page.dart';
+import 'get_x_getview_page.dart';
 
 class GetXPage extends StatefulWidget {
   const GetXPage({super.key});
@@ -185,6 +186,30 @@ class _GetXPageState extends State<GetXPage> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(GetXGetViewPage.name);
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 8),
+                width: double.infinity,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: const Text(
+                  "GetX-GetView使用",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    height: 1.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ],
