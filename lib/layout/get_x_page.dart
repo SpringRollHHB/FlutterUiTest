@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutteruitest/layout/get_x_status_manager_one.dart';
+import 'package:flutteruitest/layout/widget/route/route_manage_widget.dart';
 import 'package:flutteruitest/utils/get_x_utils.dart';
+import 'package:get/get.dart';
 
 class GetXPage extends StatefulWidget {
   const GetXPage({super.key});
@@ -92,6 +95,65 @@ class _GetXPageState extends State<GetXPage> {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => RouteManageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16)));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 8),
+                width: double.infinity,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: const Text(
+                  "GetX-路由传值",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    height: 1.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: Text(
+                "状态管理",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(GetXStatusManagerOnePage.name);
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 8),
+                width: double.infinity,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: const Text(
+                  "GetX-响应式状态管理",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    height: 1.0,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
