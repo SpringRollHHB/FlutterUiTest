@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:flutteruitest/layout/tool/all_controller_binding.dart';
 import 'package:flutteruitest/routers.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutteruitest/layout/home_page_widget.dart';
 import 'package:flutteruitest/layout/widget/single_ton.dart';
 import 'package:flutteruitest/player.dart';
 import 'layout/get_x_route_one.dart';
+import 'layout/tool/count_get_controller.dart';
 import 'layout/widget/route/no_name_result_widget.dart';
 
 void main() {
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
     SingleTon.singleTon;
     return GetMaterialApp(
       title: 'Flutter Ui Study',
+      initialBinding: AllControllerBinding(),
       initialRoute: "/",
       // routes: {
       //   "/" : (context) => const HomePageWidget(),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/get_x_status_manager_one.dart';
+import 'package:flutteruitest/layout/tool/count_get_controller.dart';
 import 'package:flutteruitest/layout/widget/route/route_manage_widget.dart';
 import 'package:flutteruitest/utils/get_x_utils.dart';
 import 'package:get/get.dart';
+
+import 'get_x_count_page.dart';
 
 class GetXPage extends StatefulWidget {
   const GetXPage({super.key});
@@ -12,6 +15,9 @@ class GetXPage extends StatefulWidget {
 }
 
 class _GetXPageState extends State<GetXPage> {
+
+  CountGetController countGetController = Get.find<CountGetController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,6 +161,30 @@ class _GetXPageState extends State<GetXPage> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(GetXCountPage.name);
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 8),
+                width: double.infinity,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: Obx(() => Text(
+                  "GetX-多页面状态管理-${countGetController.count}-${countGetController.name}",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    height: 1.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),),
               ),
             ),
           ],
