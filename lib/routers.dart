@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutteruitest/test_middle_ware.dart';
 import 'package:get/get.dart';
+import 'layout/channel_test_page.dart';
 import 'layout/get_x_count_page.dart';
 import 'layout/get_x_getview_page.dart';
 import 'layout/get_x_route_one.dart';
@@ -22,6 +23,7 @@ class RouterPages {
         );
       },
     ),
+    GetPage(name: ChannelTestPage.name, page: () => const ChannelTestPage()),
     GetPage(name: "/GetXGetViewPage", page: () => const GetXGetViewPage(),binding: StudentGetXBinding()),
     GetPage(name: GetXCountPage.name, page: () => const GetXCountPage()),
     GetPage(name: GetXRouteOne.name, page: () => const GetXRouteOne(),middlewares: [ TestMiddleWare() ]),

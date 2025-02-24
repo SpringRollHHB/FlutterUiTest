@@ -7,16 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/home_page_widget.dart';
 import 'package:flutteruitest/layout/widget/single_ton.dart';
 import 'package:flutteruitest/player.dart';
+import 'channel/FlutterAndroidChannel.dart';
 import 'layout/get_x_route_one.dart';
 import 'layout/tool/count_get_controller.dart';
 import 'layout/widget/route/no_name_result_widget.dart';
 
-void main() {
+void main() async{
   var oldError = FlutterError.onError;
   FlutterError.onError = (details) {
     oldError?.call(details);
     //这里统一处理flutter为我们捕获的异常
   };
+  WidgetsFlutterBinding.ensureInitialized();
+  FlutterToAndroid.init();
   runZoned(
     () => runApp(const MyApp()),
     zoneSpecification: ZoneSpecification(
