@@ -13,5 +13,9 @@ object AndroidToFlutter {
         channel?.invokeMethod("install","");
     }
 
+    fun toNameContext() {
+        channel?.invokeMethod("toNameContext","");
+    }
+
 
 }

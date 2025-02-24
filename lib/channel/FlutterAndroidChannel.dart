@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+
+import '../layout/get_x_count_page.dart';
 
 class FlutterToAndroid {
   static const MethodChannel _channel = MethodChannel("flutter.ui.test.flutter.to.android");
@@ -19,9 +22,13 @@ class FlutterToAndroid {
   }
 
   static Future<dynamic> _callHandler(MethodCall call) async {
+    debugPrint("AndroidToFlutterChannel ....${call.method}...");
     switch(call.method) {
       case "install" : {
-        debugPrint("AndroidToFlutterChannel install ...");
+
+      }
+      case "toNameContext" : {
+        Get.toNamed(GetXCountPage.name);
       }
     }
   }

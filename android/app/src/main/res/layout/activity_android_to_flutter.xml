@@ -10,6 +10,17 @@
         android:layout_gravity="center"
         android:id="@+id/btn_install"
         android:text="点击install"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
+    <Button
+        android:id="@+id/btn_get_to_name"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="toName-Context测试"
         android:textSize="10sp"
         android:layout_width="80dp"
         android:layout_height="80dp"/>

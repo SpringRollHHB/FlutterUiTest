@@ -14,6 +14,11 @@ class AndroidToFlutterActivity : Activity() {
         btn.setOnClickListener {
             AndroidToFlutter.install();
         }
+
+        val btn_two : Button = findViewById(R.id.btn_get_to_name);
+        btn_two.setOnClickListener {
+            AndroidToFlutter.toNameContext();
+        }
     }
 
 }
