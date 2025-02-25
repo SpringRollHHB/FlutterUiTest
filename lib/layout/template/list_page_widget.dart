@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../home_page_widget.dart';
+import '../tool/apus_base_page.dart';
 
 abstract class ListPageWidget extends StatefulWidget {
 
@@ -20,11 +21,16 @@ abstract class ListPageWidget extends StatefulWidget {
   setList(BuildContext context) ;
 }
 
-class _ListPageWidgetState extends State<ListPageWidget> {
+class _ListPageWidgetState extends ApusBasePageState<ListPageWidget> {
   @override
   void initState() {
     super.initState();
     widget.setList(context);
+  }
+
+  @override
+  void doApusAction() {
+    apusList.add(1);
   }
 
   @override
