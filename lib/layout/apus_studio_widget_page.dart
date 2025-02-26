@@ -39,6 +39,21 @@ class _ApusStudioWidgetPageState extends State<ApusStudioWidgetPage> {
                   fontSize: 20
                 ),
               ),
+            ),
+            const SizedBox(height: 5,),
+            Container(
+              constraints: const BoxConstraints(maxWidth: 100),
+              height: 30,
+              color: Colors.red,
+              child: const Text(
+                "何浩博何浩博何浩博何浩博何浩博何浩博何浩博何浩博何浩博",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 10,
+                ),
+              ),
             )
           ],
         ),
