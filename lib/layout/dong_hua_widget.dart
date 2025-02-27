@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutteruitest/layout/animation_image.dart';
 
 class DongHuaWidget extends StatefulWidget {
@@ -46,12 +47,29 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: Colors.yellow,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: MediaQuery.of(context).padding.top + 5,),
+            const SizedBox(height: 0,),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "动画",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  height: 1.0,
+                ),
+              ),
+            ),
             Row(
               children: [
                 Expanded(
