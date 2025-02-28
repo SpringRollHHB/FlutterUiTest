@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutteruitest/layout/animation_image.dart';
+import 'package:get/get.dart';
 
 class DongHuaWidget extends StatefulWidget {
   const DongHuaWidget({super.key});
@@ -15,6 +16,8 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProvider
   late AnimationController controller01;
   late Animation<double> animation01;
   late Animation<double> animation02;
+
+  var dy = 0.0.obs;
 
   @override
   void initState() {
@@ -117,7 +120,7 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProvider
             AnimationImage(
               listenable: animation02,
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(height: 5,),
             AnimatedBuilder(
               animation: animation02,
               builder: (context, child) {
@@ -127,6 +130,44 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProvider
                   width: animation02.value,
                 );
               },
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Obx(() => AnimatedContainer(
+                  transform: Matrix4.translationValues(0, dy.value, 0),
+                  duration: const Duration(milliseconds: 500),
+                  child: Container(
+                    width: 15,
+                    height: 15,
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle
+                    ),
+                  ),
+                ),),
+                const SizedBox(width: 10,),
+                GestureDetector(
+                  onTap: () {
+                    if (dy.value > 0) {
+                      dy.value = 0;
+                    } else {
+                      dy.value = 20;
+                    }
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    width: 80,
+                    height: 30,
+                    alignment: Alignment.center,
+                    child: const Text("执行动画",style: TextStyle(color: Colors.white,fontSize: 12),),
+                  ),
+                )
+              ],
             )
 
           ],
