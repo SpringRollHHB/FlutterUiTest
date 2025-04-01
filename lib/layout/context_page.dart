@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/widget/show_context_text_widget.dart';
 
@@ -12,7 +11,7 @@ class ContextTestPage extends StatefulWidget {
 
 class _ContextTestPageState extends State<ContextTestPage> {
 
-  ValueNotifier<bool> _showNotify = ValueNotifier(true);
+  final ValueNotifier<bool> _showNotify = ValueNotifier(true);
 
 
   @override
@@ -21,6 +20,7 @@ class _ContextTestPageState extends State<ContextTestPage> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
+          SizedBox(height: MediaQuery.of(context).padding.top,),
           Row(
             children: [
               ValueListenableBuilder(
@@ -29,8 +29,8 @@ class _ContextTestPageState extends State<ContextTestPage> {
                     return Visibility(
                       visible: show,
                       child: Container(
-                        height: 80,
-                        width: 80,
+                        height: 100,
+                        width: 120,
                         alignment: Alignment.center,
                         color: Colors.yellow,
                         child: const Column(
@@ -38,7 +38,7 @@ class _ContextTestPageState extends State<ContextTestPage> {
                           children: [
                             ShowContextTestWidget(),
                             Text(
-                              "visiable测试",
+                              "Visibility测试",
                               style: TextStyle(color: Colors.black, fontSize: 18),
                             )
                           ],
@@ -53,7 +53,7 @@ class _ContextTestPageState extends State<ContextTestPage> {
             children: [
               GestureDetector(
                 onTap: (){
-                  _showNotify.value = false;
+                  _showNotify.value = !_showNotify.value;
                 },
                 child: Container(
                   width: 60,
