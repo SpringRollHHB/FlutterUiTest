@@ -3,6 +3,7 @@ import 'package:flutteruitest/test_middle_ware.dart';
 import 'package:get/get.dart';
 import 'layout/AsyncAwaitPage.dart';
 import 'layout/channel_test_page.dart';
+import 'layout/context_page.dart';
 import 'layout/get_x_count_page.dart';
 import 'layout/get_x_getview_page.dart';
 import 'layout/get_x_route_one.dart';
@@ -24,6 +25,7 @@ class RouterPages {
         );
       },
     ),
+    GetPage(name: ContextTestPage.name, page: () => const ContextTestPage()),
     GetPage(name: AsyncWaitPage.name, page: () => const AsyncWaitPage()),
     GetPage(name: ChannelTestPage.name, page: () => const ChannelTestPage()),
     GetPage(name: "/GetXGetViewPage", page: () => const GetXGetViewPage(),binding: StudentGetXBinding()),

@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'AsyncAwaitPage.dart';
 import 'basic_syntax_page.dart';
 import 'channel_test_page.dart';
+import 'context_page.dart';
 import 'custom_paint_widget.dart';
 import 'dong_hua_widget.dart';
 import 'event_handling_notification_page.dart';
@@ -46,7 +47,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: "GetX-使用", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const GetXPage())); }));
     list.add(HomeItem(title: "Channel-原生-flutter通信", onTap: () { Get.toNamed(ChannelTestPage.name); }));
     list.add(HomeItem(title: "Async-Await使用", onTap: () { Get.toNamed(AsyncWaitPage.name); }));
-
+    list.add(HomeItem(title: "Context-问题", onTap: () { Get.toNamed(ContextTestPage.name); }));
   }
 
   @override
