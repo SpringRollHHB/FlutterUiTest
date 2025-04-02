@@ -5,6 +5,9 @@ class ContextTestPage extends StatefulWidget {
   static const name = "/ContextTestPage";
   const ContextTestPage({super.key});
 
+  //Visibility(  子widget会重复执行 initState() - dispose()
+  //Offstage(  子widget不会重复执行 initState() - dispose()
+
   @override
   State<ContextTestPage> createState() => _ContextTestPageState();
 }
@@ -46,11 +49,34 @@ class _ContextTestPageState extends State<ContextTestPage> {
                       ),
                     );
                   }),
+              const Spacer(),
+              // ValueListenableBuilder(valueListenable: _showNotify, builder: (_,show,c) {
+              //   return Offstage(
+              //     offstage: !show,
+              //     child: Container(
+              //       height: 100,
+              //       width: 120,
+              //       alignment: Alignment.center,
+              //       color: Colors.yellow,
+              //       child: const Column(
+              //         mainAxisSize: MainAxisSize.min,
+              //         children: [
+              //           ShowContextTestWidget(),
+              //           Text(
+              //             "Offstage测试",
+              //             style: TextStyle(color: Colors.black, fontSize: 18),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   );
+              // }),
             ],
           ),
           const Spacer(),
           Row(
             children: [
+              const SizedBox(width: 10,),
               GestureDetector(
                 onTap: (){
                   _showNotify.value = !_showNotify.value;
@@ -60,11 +86,14 @@ class _ContextTestPageState extends State<ContextTestPage> {
                   height: 60,
                   color: Colors.black,
                 ),
-              )
+              ),
+              const SizedBox(width: 10,),
             ],
-          )
+          ),
+          const SizedBox(height: 20,)
         ],
       ),
     );
   }
+
 }
