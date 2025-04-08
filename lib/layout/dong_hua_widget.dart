@@ -11,13 +11,19 @@ class DongHuaWidget extends StatefulWidget {
   State<DongHuaWidget> createState() => _DongHuaWidgetState();
 }
 
-class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProviderStateMixin {
+class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateMixin {
 
   late AnimationController controller01;
   late Animation<double> animation01;
   late Animation<double> animation02;
 
+  late AnimationController controller02;
+  late Animation<double> animation0201;
+  late Animation<Color?> animation0202;
+  late Animation<double> animation0203;
+
   var dy = 0.0.obs;
+  var start = true.obs;
 
   @override
   void initState() {
@@ -38,12 +44,19 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProvider
       ..addStatusListener((status) {
 
       });
+
+    controller02 = AnimationController(vsync: this,duration: const Duration(seconds: 4));
+    animation0201 = Tween(begin: 10.0,end: 20.0).animate(CurvedAnimation(parent: controller02, curve: const Interval(0.0, 0.5,curve: Curves.ease)));
+    animation0202 = ColorTween(begin: Colors.black,end: Colors.red).animate(CurvedAnimation(parent: controller02, curve: const Interval(curve: Curves.ease,0.0,0.5)),);
+    animation0203 = Tween(begin: 0.0,end: 20.0).animate(CurvedAnimation(parent: controller02, curve: const Interval(0.5,1.0,curve: Curves.ease)));
+
   }
 
   @override
   void dispose() {
     super.dispose();
     controller01.dispose();
+    controller02.dispose();
   }
 
   @override
@@ -168,7 +181,47 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with SingleTickerProvider
                   ),
                 )
               ],
-            )
+            ),
+            const SizedBox(height: 10,),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AnimatedBuilder(
+                  animation: controller02,
+                  builder: (BuildContext context, Widget? child) {
+                    return Container(
+                      margin: EdgeInsets.only(right: animation0203.value),
+                      width: animation0201.value,
+                      height: animation0201.value,
+                      decoration: BoxDecoration(color: animation0202.value, shape: BoxShape.circle),
+                    );
+                  },
+                ),
+                const SizedBox(width: 10,),
+                GestureDetector(
+                  onTap: () {
+                    if(controller02.status == AnimationStatus.completed) {
+                      controller02.reverse();
+                    }
+
+                    if(controller02.status == AnimationStatus.dismissed) {
+                      controller02.forward();
+                    }
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    width: 80,
+                    height: 30,
+                    alignment: Alignment.center,
+                    child: const Text("交织动画",style: TextStyle(color: Colors.white,fontSize: 12),),
+                  ),
+                )
+              ],
+            ),
+
 
           ],
         ),
