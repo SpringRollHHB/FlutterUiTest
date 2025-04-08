@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -221,6 +223,64 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
                 )
               ],
             ),
+            const SizedBox(height: 10,),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Obx(() {
+                  return Container(
+                    height: 26,
+                    width: 66,
+                    padding: const EdgeInsets.all(3),
+                    alignment: Alignment.centerLeft,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(seconds: 1),
+                      reverseDuration: const Duration(seconds: 1),
+                      child: Container(
+                        key: Key("${DateTime.now().millisecondsSinceEpoch}-${start.value}"),
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: start.value ? Colors.white : Colors.red,
+                        ),
+                      ),
+                      transitionBuilder: (Widget _child, Animation<double> animation) {
+                        var marginLeft = Tween(begin: 0.0,end: 40.0).animate(animation);
+                        return AnimatedBuilder(
+                            animation: animation,
+                            builder: (BuildContext context, Widget? child) {
+                              return Container(
+                                margin: EdgeInsets.only(left: marginLeft.value),
+                                child: _child,
+                              );
+                            });
+                      },
+                    ),
+                  );
+                }),
+                const SizedBox(width: 10,),
+                GestureDetector(
+                  onTap: (){
+                    start.value = !start.value;
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    width: 120,
+                    height: 30,
+                    alignment: Alignment.center,
+                    child: const Text("AnimatedSwitcher-不好用",style: TextStyle(color: Colors.white,fontSize: 12),),
+                  ),
+                )
+              ],
+            )
 
 
           ],
