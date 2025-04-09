@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutteruitest/layout/animation_image.dart';
+import 'package:flutteruitest/layout/widget/pro_animation_widget.dart';
 import 'package:get/get.dart';
 
 class DongHuaWidget extends StatefulWidget {
@@ -28,6 +29,7 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
   var start = true.obs;
   var count = 0.obs;
   var count2 = 0.obs;
+  var dirty01 = true;
 
   @override
   void initState() {
@@ -381,7 +383,19 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
                 )
               ],
             ),
-
+            const SizedBox(height: 10,),
+            StatefulBuilder(
+              builder: (BuildContext context, StateSetter _setState) {
+                return GestureDetector(
+                  onTap: (){
+                    _setState((){
+                      dirty01 = !dirty01;
+                    });
+                  },
+                  child: ProAnimationWidget(dirty: dirty01,),
+                );
+              },
+            ),
           ],
         ),
       ),
