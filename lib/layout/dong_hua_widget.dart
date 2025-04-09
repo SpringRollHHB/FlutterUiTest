@@ -26,6 +26,8 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
 
   var dy = 0.0.obs;
   var start = true.obs;
+  var count = 0.obs;
+  var count2 = 0.obs;
 
   @override
   void initState() {
@@ -269,19 +271,116 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
                     start.value = !start.value;
                   },
                   child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(8)
                     ),
-                    width: 120,
                     height: 30,
                     alignment: Alignment.center,
                     child: const Text("AnimatedSwitcher-不好用",style: TextStyle(color: Colors.white,fontSize: 12),),
                   ),
                 )
               ],
-            )
+            ),
+            const SizedBox(height: 10,),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 80,
+                  height: 80,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Obx(() {
+                    return AnimatedSwitcher(
+                      duration:  const Duration(seconds: 1),
+                      reverseDuration: const Duration(milliseconds: 500),
+                      transitionBuilder: (Widget _child, Animation<double> animation) {
+                        var a = Tween<double>(begin: 0.0,end: 4.0).animate(animation);
+                        return ScaleTransition(scale: a,child: _child,);
+                      },
+                      child: Text("$count",style: const TextStyle(color: Colors.white,fontSize: 10),key: Key(count.toString()),),
+                    );
+                  }),
+                ),
+                const SizedBox(width: 10,),
+                GestureDetector(
+                  onTap: (){
+                    count.value = count.value +1;
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    height: 30,
+                    alignment: Alignment.center,
+                    child: const Text("AnimatedSwitcher-count",style: TextStyle(color: Colors.white,fontSize: 12),),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 10,),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 80,
+                  height: 80,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Obx(() {
+                    return AnimatedSwitcher(
+                      duration:  const Duration(seconds: 1),
+                      transitionBuilder: (Widget _child, Animation<double> animation) {
 
+                        var a = Tween<Offset>(begin: const Offset(0,1.5),end: const Offset(0,0)).animate(animation);
+                        var b = Tween(begin: 0.0,end: 3.3).animate(animation);
+
+                        return AnimatedBuilder(animation: a, builder: (BuildContext context, Widget? child) {
+                          var offset1 = a.value;
+                          if(animation.status == AnimationStatus.reverse) offset1 = Offset(-a.value.dx, -a.value.dy);
+
+                          return Transform.scale(
+                            scale: b.value,
+                            child: FractionalTranslation(
+                              translation: offset1,
+                              transformHitTests: true,
+                              child: _child,
+                            ),
+                          );
+                        },);
+                      },
+                      child: Text("$count2",style: const TextStyle(color: Colors.white,fontSize: 10),key: Key(count2.toString()),),
+                    );
+                  }),
+                ),
+                const SizedBox(width: 10,),
+                GestureDetector(
+                  onTap: (){
+                    count2.value = count2.value + 1;
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    height: 30,
+                    alignment: Alignment.center,
+                    child: const Text("AnimatedSwitcher-平移",style: TextStyle(color: Colors.white,fontSize: 12),),
+                  ),
+                )
+              ],
+            ),
 
           ],
         ),
