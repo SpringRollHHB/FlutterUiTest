@@ -30,6 +30,7 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
   var count = 0.obs;
   var count2 = 0.obs;
   var dirty01 = true;
+  double dirtyWidth = 80;
 
   @override
   void initState() {
@@ -393,6 +394,29 @@ class _DongHuaWidgetState extends State<DongHuaWidget> with TickerProviderStateM
                     });
                   },
                   child: ProAnimationWidget(dirty: dirty01,),
+                );
+              },
+            ),
+            const SizedBox(height: 10,),
+            StatefulBuilder(
+              builder: (BuildContext context, StateSetter _setState) {
+                return GestureDetector(
+                  onTap: () {
+                    _setState(() {
+                      dirtyWidth = dirtyWidth == 80 ? 100 : 80;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+                    width: dirtyWidth,
+                    height: dirtyWidth,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "点击",
+                      style: TextStyle(color: Colors.white,fontSize: 15),
+                    ),
+                  ),
                 );
               },
             ),
