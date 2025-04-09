@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class ProAnimationWidget extends StatefulWidget {
@@ -32,6 +30,11 @@ class _ProAnimationWidgetState extends State<ProAnimationWidget> with TickerProv
           width: 80,
           height: 80,
           decoration: BoxDecoration(shape: BoxShape.circle, color: colorAnimation.value),
+          alignment: Alignment.center,
+          child: const Text(
+            "点击",
+            style: TextStyle(color: Colors.white,fontSize: 15),
+          ),
         );
       },
     );
