@@ -54,7 +54,7 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
     Widget divider2 = const Divider(color: Colors.green);
     return Scaffold(
       body: PageView(
-        children: [buildColumnOne(divider1, divider2), buildColumnTwo(),buildColumnThree()],
+        children: [buildColumnOne(divider1, divider2), buildColumnTwo(),buildColumnThree(),buildColumnFour()],
       ),
     );
   }
@@ -66,6 +66,7 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
           color: Colors.white,
           child: Stack(children: [
             ListView.separated(
+                primary: false,
                 itemBuilder: (BuildContext context, int index) {
                   if (_words[index] == "end") {
                     if (_words.length <= 100) {
@@ -139,6 +140,7 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
               alignment: Alignment.center,
               child: Stack(children: [
                 ListView.builder(
+                  primary: false,
                   itemBuilder: (BuildContext context, int index) {
                     return Text("$index",
                         style: const TextStyle(
@@ -183,6 +185,7 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
           height: 200,
           width: double.infinity,
           child: ListView(
+              primary: false,
               padding: const EdgeInsets.all(20),
               shrinkWrap: true,
               children: const [
@@ -218,6 +221,7 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
           height: 200,
           color: Colors.red,
           child: ListView.builder(
+              primary: false,
               itemBuilder: (BuildContext context, int index) {
                 return Center(
                     child: Text("item - $index",
@@ -232,6 +236,7 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
           color: Colors.grey,
           padding: const EdgeInsets.all(20),
           child: ListView.separated(
+            primary: false,
             itemBuilder: (BuildContext context, int index) {
               return Center(
                   child: Text("分割线-$index",
@@ -248,16 +253,20 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
           )),
       Expanded(
           child: ListView.builder(
+              primary: false,
               itemBuilder: (BuildContext context, int index) {
-                return Center(
-                    child: Text("固定高度-$index",
-                        style: const TextStyle(
-                            decoration: TextDecoration.none,
-                            color: Colors.white,
-                            fontSize: 10)));
+                return Container(
+                  color: Colors.black,
+                  child: Center(
+                      child: Text("固定高度-$index",
+                          style: const TextStyle(
+                              decoration: TextDecoration.none,
+                              color: Colors.red,
+                              fontSize: 10),),),
+                );
               },
               itemCount: 100,
-              padding: const EdgeInsets.all(0),
+              padding: const EdgeInsets.only(top: 10,bottom: 10),
               prototypeItem: const Text("固定高度",
                   style: TextStyle(
                       decoration: TextDecoration.none,
@@ -279,6 +288,41 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
         const AnimatedListWidget(),
         const SizedBox(height: 10,),
         const AnimatedListTwoWidget(),
+      ],
+    );
+  }
+
+  Widget buildColumnFour() {
+    return Column(
+      children: [
+        SizedBox(height: MediaQuery.of(context).padding.top,),
+        Container(
+          width: double.infinity,
+          height: 150,
+          color: Colors.black,
+          child: ListView.separated(
+            itemCount: 20,
+            primary: false,
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            itemBuilder: (BuildContext context, int index) {
+              return const Text(
+                "text-test",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  height: 1.0,
+                ),
+                textAlign: TextAlign.center,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Container(
+                color: Colors.red,
+                height: 10,
+              );
+            },
+          ),
+        ),
       ],
     );
   }
