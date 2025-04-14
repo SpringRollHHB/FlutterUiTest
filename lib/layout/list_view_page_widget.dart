@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/widget/animated_list_widget.dart';
+import 'package:flutteruitest/layout/widget/animationed_list_two_widget.dart';
 
 
 /*
@@ -276,6 +277,8 @@ class _ListViewPageWidgetState extends State<ListViewPageWidget> {
           style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w700),
         ),
         const AnimatedListWidget(),
+        const SizedBox(height: 10,),
+        const AnimatedListTwoWidget(),
       ],
     );
   }
