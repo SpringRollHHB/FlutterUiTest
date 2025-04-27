@@ -3,6 +3,31 @@ import 'package:get/get.dart';
 
 class GetXUtils {
 
+  static showSystemDialog(BuildContext context) {
+    showDialog(context: context, builder: (BuildContext context) {
+      return GestureDetector(
+        onTap: () {
+          Get.back();
+        },
+        child: Align(
+          alignment: Alignment.center,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              Container(
+                width: 200,
+                height: 100,
+                alignment: Alignment.center,
+                color: Colors.red,
+                child: const Text("系统弹窗测试GetBack()-》可以使用的",textAlign: TextAlign.center,style: TextStyle(decoration: TextDecoration.none,color: Colors.black,fontSize: 25,height: 1.0),),
+              )
+            ],
+          ),
+        )
+      );
+    });
+  }
+
   static showDefaultDialog() {
     Get.defaultDialog(
       title: "提示信息",

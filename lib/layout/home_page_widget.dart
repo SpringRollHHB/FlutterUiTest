@@ -44,7 +44,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: " 事件处理与通知", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const EventHandlingNotificationPage())); }));
     list.add(HomeItem(title: " 文件操作与网络操作", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const FileNetworkActionPage())); }));
     list.add(HomeItem(title: "基本语法", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BasicSyntaxPage())); }));
-    list.add(HomeItem(title: "GetX-使用", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const GetXPage())); }));
+    list.add(HomeItem(title: "GetX-状态管理插件", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const GetXPage())); }));
     list.add(HomeItem(title: "Channel-原生-flutter通信", onTap: () { Get.toNamed(ChannelTestPage.name); }));
     list.add(HomeItem(title: "Async-Await使用", onTap: () { Get.toNamed(AsyncWaitPage.name); }));
     list.add(HomeItem(title: "Context-问题", onTap: () { Get.toNamed(ContextTestPage.name); }));

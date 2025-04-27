@@ -29,6 +29,28 @@ class _GetXPageState extends State<GetXPage> {
           children: [
             SizedBox(height: MediaQuery.of(context).padding.top + 5,),
             GestureDetector(
+              onTap: () => GetXUtils.showSystemDialog(context),
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 8),
+                width: double.infinity,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: const Text(
+                  "flutter-sdk 弹窗",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    height: 1.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
               onTap: () => GetXUtils.showDefaultDialog(),
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 8),

@@ -24,13 +24,14 @@ class RouterPages {
           showTitle: Get.arguments as String,
         );
       },
+      transition: Transition.rightToLeft, //配置路由动画
     ),
     GetPage(name: ContextTestPage.name, page: () => const ContextTestPage()),
     GetPage(name: AsyncWaitPage.name, page: () => const AsyncWaitPage()),
     GetPage(name: ChannelTestPage.name, page: () => const ChannelTestPage()),
     GetPage(name: "/GetXGetViewPage", page: () => const GetXGetViewPage(),binding: StudentGetXBinding()),
     GetPage(name: GetXCountPage.name, page: () => const GetXCountPage()),
-    GetPage(name: GetXRouteOne.name, page: () => const GetXRouteOne(),middlewares: [ TestMiddleWare() ]),
+    GetPage(name: GetXRouteOne.name, page: () => const GetXRouteOne(),middlewares: [ TestMiddleWare() ]), //中间件
     GetPage(name: GetXStatusManagerOnePage.name, page: () => const GetXStatusManagerOnePage())
   ];
 }

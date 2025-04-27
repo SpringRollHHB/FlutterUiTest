@@ -20,7 +20,7 @@ class _GetXRouteOneState extends State<GetXRouteOne> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.red,
       body: Center(
         child: Text(
           "GetX-路由-Get.arguments-1",

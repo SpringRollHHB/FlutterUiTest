@@ -11,6 +11,7 @@ class NoNameResultWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
+      color: Colors.blue,
       alignment: Alignment.center,
       child: GestureDetector(
         onTap: () {

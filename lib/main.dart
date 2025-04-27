@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Ui Study',
       initialBinding: AllControllerBinding(),
       initialRoute: "/",
+      defaultTransition: Transition.leftToRight, //默认路由动画
       // routes: {
       //   "/" : (context) => const HomePageWidget(),
       //   NoNameResultWidget.name: (context) {
