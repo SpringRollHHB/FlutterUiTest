@@ -88,7 +88,10 @@ class _GetXStatusManagerOnePageState extends State<GetXStatusManagerOnePage> {
           const SizedBox(width: 15,),
           FloatingActionButton(
             onPressed: () {
-              studentGetX.value = StudentGetX(name: "小明${Random().nextInt(10)}",age: Random().nextInt(100));;
+              studentGetX.update((v) {
+                v?.name = "小明${Random().nextInt(10)}"; //这样写是可以的
+              });
+              // studentGetX.value = StudentGetX(name: "小明${Random().nextInt(10)}",age: Random().nextInt(100));
             },
             backgroundColor: Colors.white,
             child: const Text("学生",style: TextStyle(color: Colors.black,fontSize: 20,),),
