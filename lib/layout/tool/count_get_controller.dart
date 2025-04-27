@@ -17,6 +17,7 @@ class CountGetController extends GetxController {
 
   void changeName() {
     name = "小明${Random().nextInt(1000)}";
+    update();
   }
 
 
