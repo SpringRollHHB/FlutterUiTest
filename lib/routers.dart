@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutteruitest/layout/udp_page.dart';
 import 'package:flutteruitest/test_middle_ware.dart';
 import 'package:get/get.dart';
 import 'layout/AsyncAwaitPage.dart';
@@ -32,6 +33,7 @@ class RouterPages {
     GetPage(name: "/GetXGetViewPage", page: () => const GetXGetViewPage(),binding: StudentGetXBinding()),
     GetPage(name: GetXCountPage.name, page: () => const GetXCountPage()),
     GetPage(name: GetXRouteOne.name, page: () => const GetXRouteOne(),middlewares: [ TestMiddleWare() ]), //中间件
-    GetPage(name: GetXStatusManagerOnePage.name, page: () => const GetXStatusManagerOnePage())
+    GetPage(name: GetXStatusManagerOnePage.name, page: () => const GetXStatusManagerOnePage()),
+    GetPage(name: UdpPage.name, page: () => const UdpPage()),
   ];
 }

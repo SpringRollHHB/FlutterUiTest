@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/apus_page_widget.dart';
 import 'package:flutteruitest/layout/get_x_page.dart';
 import 'package:flutteruitest/layout/scrollable_page_widget.dart';
+import 'package:flutteruitest/layout/udp_page.dart';
 import 'package:flutteruitest/layout/widget/baseComponent/base_component_widget.dart';
 import 'package:flutteruitest/layout/widget/route/route_manage_widget.dart';
 import 'package:flutteruitest/layout/widget_test_Page.dart';
@@ -48,6 +49,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: "Channel-原生-flutter通信", onTap: () { Get.toNamed(ChannelTestPage.name); }));
     list.add(HomeItem(title: "Async-Await使用", onTap: () { Get.toNamed(AsyncWaitPage.name); }));
     list.add(HomeItem(title: "Context-问题", onTap: () { Get.toNamed(ContextTestPage.name); }));
+    list.add(HomeItem(title: "FLUTTER-UDP", onTap: () { Get.toNamed(UdpPage.name); }));
   }
 
   @override
