@@ -41,11 +41,17 @@ class _UdpReceiveWidgetState extends State<UdpReceiveWidget> {
   }
 
   Future<void> initData() async {
-    List<InternetAddress> list = await InternetAddress.lookup("127.0.0.1");
-    rawDatagramSocket = await RawDatagramSocket.bind(list.first, 3465);
+    rawDatagramSocket = await RawDatagramSocket.bind(InternetAddress.loopbackIPv4, 3465);
     rawDatagramSocket?.listen((event) async {
-      Datagram? data = rawDatagramSocket?.receive();
+      Datagram? data;
+      switch(event) {
+        case RawSocketEvent.read: { data = rawDatagramSocket?.receive(); }
+        case RawSocketEvent.write: {}
+        case RawSocketEvent.closed: {}
+        case RawSocketEvent.readClosed: {}
+      }
       print("UdpReceiveWidget  event->$event data->$data");
+      data = null;
     });
   }
 
