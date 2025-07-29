@@ -23,18 +23,20 @@ class _UdpPageState extends State<UdpPage> {
       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
+          SizedBox(height: MediaQuery.of(context).padding.top,),
           SizedBox(
-            height: MediaQuery.of(context).size.height/4,
+            height: MediaQuery.of(context).size.height/7,
             width: double.infinity,
             child: const UdpSendWidget(),
           ),
-          const SizedBox(height: 10,),
           SizedBox(
-            height: MediaQuery.of(context).size.height/4,
+            height: MediaQuery.of(context).size.height/7,
             width: double.infinity,
             child: const UdpReceiveWidget(),
           ),
+          const Spacer()
         ],
       ),
     );

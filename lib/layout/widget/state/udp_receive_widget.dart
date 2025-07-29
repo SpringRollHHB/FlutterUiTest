@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -27,16 +28,12 @@ class _UdpReceiveWidgetState extends State<UdpReceiveWidget> {
       width: double.infinity,
       height: double.infinity,
       alignment: Alignment.center,
-      padding: const EdgeInsets.all(15),
-      child: Container(
-        height: 100,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(message,style: const TextStyle(color: Colors.white,fontSize: 20),),
+      margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(10),
       ),
+      child: Text(message,style: const TextStyle(color: Colors.white,fontSize: 20),),
     );
   }
 
@@ -45,14 +42,28 @@ class _UdpReceiveWidgetState extends State<UdpReceiveWidget> {
     rawDatagramSocket?.listen((event) async {
       Datagram? data;
       switch(event) {
-        case RawSocketEvent.read: { data = rawDatagramSocket?.receive(); }
-        case RawSocketEvent.write: {}
-        case RawSocketEvent.closed: {}
+        case RawSocketEvent.read: {
+          data = rawDatagramSocket?.receive();
+          //test event -> RawSocketEvent.closed
+          Future.delayed(const Duration(seconds: 2)).then((v) {
+            rawDatagramSocket?.close();
+            rawDatagramSocket = null;
+          });
+        }
+        case RawSocketEvent.write: { } //通常只会在 socket 启动时触发一次
+        case RawSocketEvent.closed: { rawDatagramSocket?.close(); }
         case RawSocketEvent.readClosed: {}
       }
-      print("UdpReceiveWidget  event->$event data->$data");
+      print("UdpReceiveWidget  event->$event data->${data != null ? utf8.decode(data.data) : "null"}");
       data = null;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    rawDatagramSocket?.close();
+    rawDatagramSocket = null;
   }
 
 
