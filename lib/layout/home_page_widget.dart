@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutteruitest/layout/StreamPage.dart';
 import 'package:flutteruitest/layout/apus_page_widget.dart';
 import 'package:flutteruitest/layout/get_x_page.dart';
 import 'package:flutteruitest/layout/scrollable_page_widget.dart';
@@ -50,6 +51,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: "Async-Await使用", onTap: () { Get.toNamed(AsyncWaitPage.name); }));
     list.add(HomeItem(title: "Context-问题", onTap: () { Get.toNamed(ContextTestPage.name); }));
     list.add(HomeItem(title: "FLUTTER-UDP", onTap: () { Get.toNamed(UdpPage.name); }));
+    list.add(HomeItem(title: "Stream的使用", onTap: () { Get.toNamed(StreamPage.name); }));
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:flutteruitest/layout/udp_page.dart';
 import 'package:flutteruitest/test_middle_ware.dart';
 import 'package:get/get.dart';
 import 'layout/AsyncAwaitPage.dart';
+import 'layout/StreamPage.dart';
 import 'layout/channel_test_page.dart';
 import 'layout/context_page.dart';
 import 'layout/get_x_count_page.dart';
@@ -35,5 +36,6 @@ class RouterPages {
     GetPage(name: GetXRouteOne.name, page: () => const GetXRouteOne(),middlewares: [ TestMiddleWare() ]), //中间件
     GetPage(name: GetXStatusManagerOnePage.name, page: () => const GetXStatusManagerOnePage()),
     GetPage(name: UdpPage.name, page: () => const UdpPage()),
+    GetPage(name: StreamPage.name, page: () => const StreamPage()),
   ];
 }
