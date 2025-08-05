@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutteruitest/utils/basic_syntax_utils.dart';
 
 class BasicSyntaxPage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _BasicSyntaxPageState extends State<BasicSyntaxPage> {
                   BasicSyntaxUtils.method1(),
                   style: const TextStyle(color: Colors.black, fontSize: 8, fontWeight: FontWeight.w600),
                 ),
-                const SizedBox(width: 50,),
+                SizedBox(width: 50.w,),
                 Text(
                   BasicSyntaxUtils.method2(),
                   style: const TextStyle(color: Colors.black, fontSize: 8, fontWeight: FontWeight.w600),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutteruitest/layout/tool/all_controller_binding.dart';
 import 'package:flutteruitest/routers.dart';
 import 'package:get/get.dart';
@@ -41,36 +42,41 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SingleTon.singleTon;
-    return GetMaterialApp(
-      title: 'Flutter Ui Study',
-      initialBinding: AllControllerBinding(),
-      initialRoute: "/",
-      defaultTransition: Transition.leftToRight, //默认路由动画
-      // routes: {
-      //   "/" : (context) => const HomePageWidget(),
-      //   NoNameResultWidget.name: (context) {
-      //     debugPrint("NoNameResultWidget.name...routes");
-      //     return NoNameResultWidget(showTitle: ModalRoute.of(context)?.settings.arguments as String);
-      //   },
-      // },
-      // onGenerateRoute: (settings) {   //钩子-中间件
-      //     return MaterialPageRoute(builder: (context) {
-      //       return Container(
-      //       width: double.infinity,
-      //       height: double.infinity,
-      //       alignment: Alignment.center,
-      //       child: Text(
-      //         settings.arguments as String,
-      //         style: const TextStyle(
-      //           color: Colors.red,
-      //           decoration: TextDecoration.none,
-      //           fontSize: 30,
-      //         ),
-      //       ),
-      //     );
-      //     });
-      // },
-      getPages: RouterPages.routers,
+    return ScreenUtilInit(
+      designSize: const Size(360, 760),
+      builder: (BuildContext context, Widget? child,) {
+        return GetMaterialApp(
+          title: 'Flutter Ui Study',
+          initialBinding: AllControllerBinding(),
+          initialRoute: "/",
+          defaultTransition: Transition.leftToRight, //默认路由动画
+          // routes: {
+          //   "/" : (context) => const HomePageWidget(),
+          //   NoNameResultWidget.name: (context) {
+          //     debugPrint("NoNameResultWidget.name...routes");
+          //     return NoNameResultWidget(showTitle: ModalRoute.of(context)?.settings.arguments as String);
+          //   },
+          // },
+          // onGenerateRoute: (settings) {   //钩子-中间件
+          //     return MaterialPageRoute(builder: (context) {
+          //       return Container(
+          //       width: double.infinity,
+          //       height: double.infinity,
+          //       alignment: Alignment.center,
+          //       child: Text(
+          //         settings.arguments as String,
+          //         style: const TextStyle(
+          //           color: Colors.red,
+          //           decoration: TextDecoration.none,
+          //           fontSize: 30,
+          //         ),
+          //       ),
+          //     );
+          //     });
+          // },
+          getPages: RouterPages.routers,
+        );
+      },
     );
   }
 }
