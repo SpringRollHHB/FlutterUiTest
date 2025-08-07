@@ -8,6 +8,8 @@ import '../mavlink/crc.dart';
 
 
 class DialectEnums extends IterableMixin<DialectEnum> {
+
+
   final List<DialectEnum> _enums;
 
   DialectEnums(this._enums);
