@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class CountGetController extends GetxController {
 
   RxInt count = 0.obs;
-  String name = "小明1";
+  RxString name = "小明1".obs;
 
   void add() {
     count.value++;
@@ -16,8 +16,7 @@ class CountGetController extends GetxController {
   }
 
   void changeName() {
-    name = "小明${Random().nextInt(1000)}";
-    update();
+    name.value = "小明${Random().nextInt(1000)}";
   }
 
 

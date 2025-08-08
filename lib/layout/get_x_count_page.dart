@@ -20,7 +20,21 @@ class _GetXCountPageState extends State<GetXCountPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Obx(() => Text("${countGetController.count.toString()}--${countGetController.name}",style: const TextStyle(color: Colors.white,fontSize: 30),)),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Obx(() {
+              print("hhbggg 111");
+              return Text(countGetController.name.value,style: const TextStyle(color: Colors.white,fontSize: 30),);
+            }),
+            const SizedBox(height: 10,),
+            Obx(() {
+              print("hhb nnn 22");
+              return Text("${countGetController.count.value}",style: const TextStyle(color: Colors.white,fontSize: 30),);
+            }),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
