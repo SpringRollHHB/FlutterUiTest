@@ -11,6 +11,7 @@ import 'layout/get_x_getview_page.dart';
 import 'layout/get_x_route_one.dart';
 import 'layout/get_x_status_manager_one.dart';
 import 'layout/home_page_widget.dart';
+import 'layout/key_test_page.dart';
 import 'layout/tool/student_get_x_binging.dart';
 import 'layout/widget/route/no_name_result_widget.dart';
 
@@ -37,5 +38,6 @@ class RouterPages {
     GetPage(name: GetXStatusManagerOnePage.name, page: () => const GetXStatusManagerOnePage()),
     GetPage(name: UdpPage.name, page: () => const UdpPage()),
     GetPage(name: StreamPage.name, page: () => const StreamPage()),
+    GetPage(name: KeyTestPage.name, page: () => const KeyTestPage()),
   ];
 }
