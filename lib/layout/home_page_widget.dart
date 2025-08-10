@@ -20,6 +20,7 @@ import 'custom_paint_widget.dart';
 import 'dong_hua_widget.dart';
 import 'event_handling_notification_page.dart';
 import 'file_network_action_page.dart';
+import 'flutter_map_page.dart';
 import 'key_test_page.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -54,6 +55,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     list.add(HomeItem(title: "FLUTTER-UDP", onTap: () { Get.toNamed(UdpPage.name); }));
     list.add(HomeItem(title: "Stream的使用", onTap: () { Get.toNamed(StreamPage.name); }));
     list.add(HomeItem(title: "Key说明", onTap: () { Get.toNamed(KeyTestPage.name); }));
+    list.add(HomeItem(title: "flutter_map", onTap: () { Get.toNamed(FlutterMapPage.name); }));
   }
 
   @override

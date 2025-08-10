@@ -6,6 +6,7 @@ import 'layout/AsyncAwaitPage.dart';
 import 'layout/StreamPage.dart';
 import 'layout/channel_test_page.dart';
 import 'layout/context_page.dart';
+import 'layout/flutter_map_page.dart';
 import 'layout/get_x_count_page.dart';
 import 'layout/get_x_getview_page.dart';
 import 'layout/get_x_route_one.dart';
@@ -39,5 +40,6 @@ class RouterPages {
     GetPage(name: UdpPage.name, page: () => const UdpPage()),
     GetPage(name: StreamPage.name, page: () => const StreamPage()),
     GetPage(name: KeyTestPage.name, page: () => const KeyTestPage()),
+    GetPage(name: FlutterMapPage.name, page: () => const FlutterMapPage()),
   ];
 }
