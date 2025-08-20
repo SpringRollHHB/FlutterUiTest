@@ -12,6 +12,10 @@ class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         flutterEngine.plugins.add(FlutterToAndroidPlugin())
         super.configureFlutterEngine(flutterEngine)
+        flutterEngine
+            .platformViewsController
+            .registry
+            .registerViewFactory("native-video-view-small", NativeVideoViewFactory())
     }
 
 }

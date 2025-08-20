@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutteruitest/layout/widget/apus_fit_auto_size_text.dart';
 import 'package:flutteruitest/layout/widget/cal_text_height_width_widget.dart';
 import 'package:flutteruitest/layout/widget/text_timer_progress_widget.dart';
+import 'package:flutteruitest/layout/widget/video_player_android_small.dart';
 
 class ApusStudioWidgetPage extends StatefulWidget {
   const ApusStudioWidgetPage({super.key});
@@ -54,7 +55,8 @@ class _ApusStudioWidgetPageState extends State<ApusStudioWidgetPage> {
                   fontSize: 10,
                 ),
               ),
-            )
+            ),
+            const VideoPlayerAndroidSmall()
           ],
         ),
       ),
