@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutteruitest/layout/tool/all_controller_binding.dart';
 import 'package:flutteruitest/routers.dart';
@@ -20,6 +21,8 @@ void main() async{
     //这里统一处理flutter为我们捕获的异常
   };
   WidgetsFlutterBinding.ensureInitialized();
+  AMapFlutterLocation.updatePrivacyShow(true, true);
+  AMapFlutterLocation.updatePrivacyAgree(true);
   FlutterToAndroid.init();
   runZoned(
     () => runApp(const MyApp()),

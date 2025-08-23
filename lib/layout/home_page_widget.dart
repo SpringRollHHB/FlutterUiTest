@@ -21,6 +21,7 @@ import 'dong_hua_widget.dart';
 import 'event_handling_notification_page.dart';
 import 'file_network_action_page.dart';
 import 'flutter_map_page.dart';
+import 'hui_da_page.dart';
 import 'key_test_page.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -39,6 +40,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void initState() {
     super.initState();
     list.add(HomeItem(title: "APUS", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ApusPageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
+    list.add(HomeItem(title: "惠达科技", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const HuiDaPage())); }));
     list.add(HomeItem(title: "Widget", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => WidgetTestPage(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
     list.add(HomeItem(title: "可滚动widget", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ScrollablePageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));
     list.add(HomeItem(title: "路由传值", onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => RouteManageWidget(backColor: Colors.white,itemBackColor: Colors.black, fontColor: Colors.white,fontSize: 16))); }));

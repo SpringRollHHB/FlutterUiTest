@@ -3,6 +3,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <!--
  Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and
@@ -23,6 +26,14 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="flutteruitest">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b4c118369e6ef71261d305dc1389c91d" />
+
+        <!-- 隐私合规声明（必须） -->
+        <meta-data
+            android:name="com.amap.api.v2.PrivacyPolicy"
+            android:value="true" />
         <activity
             android:name=".AndroidToFlutterActivity"
             android:exported="false" />
