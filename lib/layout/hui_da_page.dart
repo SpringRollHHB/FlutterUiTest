@@ -5,6 +5,8 @@ import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../channel/FlutterAndroidChannel.dart';
+
 class HuiDaPage extends StatefulWidget {
   const HuiDaPage({super.key});
 
@@ -82,7 +84,26 @@ class _HuiDaPageState extends State<HuiDaPage> {
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 15,),
+            ElevatedButton(
+              onPressed:  () {
+                FlutterToAndroid.sendSms();
+              },
+              child: Container(
+                width: double.infinity,
+                height: 40,
+                alignment: Alignment.center,
+                margin: const EdgeInsets.all(6),
+                decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: const Text(
+                  "发送短信",
+                  style: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ),
+            ),
           ],
         ),
       ),

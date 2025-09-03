@@ -11,6 +11,15 @@ class FlutterToAndroid {
     _channel.setMethodCallHandler(_callHandler);
   }
 
+  static Future<void> sendSms() async {
+    try {
+      final result = await _channel.invokeMethod('sendSms');
+      debugPrint("sendSms().. success : $result");
+    } on PlatformException catch (e) {
+      debugPrint("sendSms().. error: ${e.code}, ${e.message}");
+    }
+  }
+
   static Future<bool> install() async {
     bool result = await _channel.invokeMethod("install","com.text.app.name");
     return result;
